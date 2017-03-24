@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Beer Fellows</title>
+    <script type="text/javascript" src="js/app.js"></script>
+    <style>
+      aside {
+        float: left;
+        width: 300px;
+      }
+
+      li {
+        cursor: pointer;
+      }
+
+      li:hover {
+        background-color: yellow;
+      }
+
+      section {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      /*@media (max-width: 700px) {
+        section {
+          flex-direction: row;
+        }
+      }*/
+
+      .beerStore {
+        background-color: #eeffff;
+        border: 1px solid gray;
+        width: 260px;
+        height: 460px;
+      }
+
+      .beerStore img {
+        height: 256px;
+      }
+
+      .beerDetails {
+        height: 100px;
+        overflow: scroll;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+    </header>
+    <aside>
+      <ul id="filters"></ul>
+    </aside>
+    <section id="store"></section>
+  </body>
+</html>
