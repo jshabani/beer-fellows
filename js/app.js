@@ -1,20 +1,26 @@
 var beerList = [];
 var beerStyleList = [];
+var cartList = [];
 var defaultStyleId = 93;
+var currentStyleId = defaultStyleId;
 var httpBeerRequest;
 var httpStyleRequest;
+var selectedBeer = "";
 
 // beer object constructor
 function Beer() {
   this.name = "";
   this.styleId = "";
   this.styleName = "";
+  this.styleDescription = "";
+  this.categoryName = "";
   this.abv = "";
   this.ibu = "";
   this.isOrganic = "";
   this.glass = "your choice";
   this.foodPairings = "more beer";
-  this.imgLink = "pint.png";
+  this.imgLinkSmall = "img/beer-icon-small.png";
+  this.imgLinkLarge = "img/beer-icon-large.png";
   this.price = 0;
   this.description = "";
 }
@@ -42,23 +48,15 @@ function makeBeerContent() {
   if (httpBeerRequest.readyState === XMLHttpRequest.DONE) {
     if (httpBeerRequest.status === 200) {
       var results = JSON.parse(httpBeerRequest.responseText);
+      console.log(JSON.parse(httpBeerRequest.responseText));
+      if (parseInt(results.numberOfPages) > 1) {
+        makePageNavigation(results.numberOfPages);
+      }
       var beersArray = results.data;
-      // console.log(results.data);
+      console.log(results.data);
       // loop through results
       for (var i = 0; i < beersArray.length; i++) {
-        // create beer object
-        var beer = new Beer();
-        beer.name = beersArray[i].name;
-        beer.styleId = beersArray[i].style.id;
-        beer.styleName = beersArray[i].style.name;
-        if (beersArray[i].abv) { beer.abv = beersArray[i].abv; }
-        if (beersArray[i].ibu) { beer.ibu = beersArray[i].ibu; }
-        beer.isOrganic = beersArray[i].isOrganic;
-        if (beersArray[i].foodPairings) { beer.glass = beersArray[i].foodPairings; }
-        if (beersArray[i].labels) { beer.imgLink = beersArray[i].labels.medium; }
-        beer.price = ((Math.random() * (20 - 2 + 1)) + 2).toFixed(2); // random number between 20 and 2, with 2 decimals
-        if (beersArray[i].description) { beer.description = beersArray[i].description; }
-        beerList.push(beer);
+        makeBeerObject(beersArray[i]);
       }
       // add beers to page
       addBeersToPage();
@@ -66,6 +64,26 @@ function makeBeerContent() {
       alert('There was a problem with the request.');
     }
   }
+}
+
+function makeBeerObject(apiBeer) {
+  var beer = new Beer();
+  beer.name = apiBeer.name;
+  beer.styleId = apiBeer.style.id;
+  beer.styleName = apiBeer.style.name;
+  beer.styleDescription = apiBeer.style.description;
+  beer.categoryName = apiBeer.style.category.name;
+  if (apiBeer.abv) { beer.abv = apiBeer.abv; } // check if provided
+  if (apiBeer.ibu) { beer.ibu = apiBeer.ibu; } // check if provided
+  beer.isOrganic = apiBeer.isOrganic;
+  if (apiBeer.foodPairings) { beer.glass = apiBeer.foodPairings; } // check if provided
+  if (apiBeer.labels) { // check if provided
+    beer.imgLinkSmall = apiBeer.labels.icon;
+    beer.imgLinkLarge = apiBeer.labels.large;
+  }
+  beer.price = ((Math.random() * (20 - 2 + 1)) + 2).toFixed(2); // random number between 20 and 2, with 2 decimals
+  if (apiBeer.description) { beer.description = apiBeer.description; } // check if provided
+  beerList.push(beer);
 }
 
 // make api call
@@ -102,40 +120,79 @@ function makeBeerStyleContent() {
   }
 }
 
+function makePageNavigation(numberOfPages) {
+  var pageList = document.getElementById("pageNavigation");
+  while (pageList.firstChild) {
+    pageList.removeChild(pageList.firstChild);
+  }
+  for (var i = 1; i < numberOfPages; i++) {
+    var pageItem = document.createElement("li");
+    pageItem.textContent = i;
+    pageItem.setAttribute("onclick", "goToBeerPage(" + i + ")");
+    pageList.appendChild(pageItem);
+  }
+}
+
+function goToBeerPage(pageNumber) {
+  var url = "http://api.brewerydb.com/v2/beers?key=b0ea11da6b4664a3b34cd203de153077&styleId=" + currentStyleId + "&p=" + pageNumber;
+  removeAllBeers();
+  makeBeerRequest(url);
+}
+
+function removeAllBeers() {
+  beerList = [];
+  var oldBeers = document.getElementById("store");
+  while (oldBeers.firstChild) {
+    oldBeers.removeChild(oldBeers.firstChild);
+  }
+}
+
 // make the html elements
 function addBeersToPage() {
+  // var header = document.getElementById("style");
+  // header.textContent = beerStyleList[currentStyleId].name;
+
   var storeContainer = document.getElementById("store");
   for (var i = 0; i < beerList.length; i++) {
     var beerCard = document.createElement("div");
     beerCard.setAttribute("class", "beer");
 
-    var image = document.createElement("img");
-    image.setAttribute("class", "beerImg");
-    image.setAttribute("src", beerList[i].imgLink);
-    beerCard.appendChild(image);
-
-    var name = document.createElement("h3");
+    var name = document.createElement("a");
+    name.setAttribute("href", "beer-details.html");
     name.textContent = beerList[i].name;
     beerCard.appendChild(name);
 
-    var style = document.createElement("h4");
-    style.textContent = "Style: " + beerList[i].styleName;
-    beerCard.appendChild(style);
+    var image = document.createElement("img");
+    image.setAttribute("class", "beerImg");
+    image.setAttribute("src", beerList[i].imgLinkSmall);
+    beerCard.appendChild(image);
 
-    var description = document.createElement("p");
-    description.textContent = beerList[i].description;
-    beerCard.appendChild(description);
+    // var style = document.createElement("a");
+    // style.setAttribute("href", "style.html");
+    // style.textContent = beerList[i].styleName;
+    // beerCard.appendChild(style);
 
-    var details = document.createElement("p");
-    if (beerList[i].abv != 0) { details.textContent = "ABV " + beerList[i].abv + " | "; }
-    if (beerList[i].ibu != 0) { details.textContent += "IBU " + beerList[i].ibu + " | "; }
-    details.textContent += "$" + beerList[i].price + " ";
+    // var description = document.createElement("p");
+    // description.textContent = beerList[i].description;
+    // beerCard.appendChild(description);
+
+    var abv = document.createElement("p");
+    if (beerList[i].abv != 0) { abv.textContent = "ABV " + beerList[i].abv; }
+    beerCard.appendChild(abv);
+
+    var ibu = document.createElement("p");
+    if (beerList[i].ibu != 0) { ibu.textContent += "IBU " + beerList[i].ibu; }
+    beerCard.appendChild(ibu);
+
+    var price = document.createElement("p");
+    price.textContent += "$" + beerList[i].price;
+    beerCard.appendChild(price);
+
     var button = document.createElement("input");
     button.setAttribute("type", "button");
-    button.setAttribute("value", "Buy");
-    button.setAttribute("onclick", "addToCart()");
-    details.appendChild(button);
-    beerCard.appendChild(details);
+    button.setAttribute("value", "Add to Cart");
+    button.setAttribute("onclick", "addToCart(" + i + ")");
+    beerCard.appendChild(button);
 
     storeContainer.appendChild(beerCard);
   }
@@ -158,34 +215,36 @@ function addBeerStylesToPage() {
     var listItem = document.createElement("li");
     listItem.textContent = beerStyleList[i].name;
     // make the style clickable
-    listItem.setAttribute("onclick", "getBeerByStyleId("+beerStyleList[i].id+")")
+    listItem.setAttribute("onclick", "getBeerByStyleId(" + beerStyleList[i].id+")")
     filterList.appendChild(listItem);
   }
 }
 
-// update the page with beers of a specific style
 function getBeerByStyleId(styleId) {
-  // clear the current beer list
-  beerList = [];
-  // clear the page
-  var oldBeers = document.getElementById("store");
-  while (oldBeers.firstChild) {
-    oldBeers.removeChild(oldBeers.firstChild);
-  }
+  currentStyleId = styleId;
+  removeAllBeers();
   // do the api call and update the page
   var url = "http://api.brewerydb.com/v2/beers?key=b0ea11da6b4664a3b34cd203de153077&styleId=" + styleId;
   makeBeerRequest(url);
 }
 
-function addToCart() {
-  alert("added to cart!");
+function addToCart(beerNumber) {
+  cartList.push(beerList[beerNumber]);
+  var subTotal = 0;
+  for (var i = 0; i < cartList.length; i++) {
+    console.log(parseFloat(cartList[i].price));
+    subTotal += parseFloat(cartList[i].price);
+  }
+  var cartCount = document.getElementById("cart");
+  if (cartList.length === 1 ) {
+    cartCount.textContent = cartList.length + " Beer in Cart ($" + subTotal.toFixed(2) + ")";
+  } else {
+    cartCount.textContent = cartList.length + " Beers in Cart ($" + subTotal.toFixed(2) + ")";
+  }
 }
-
 
 // do this on page load
 window.addEventListener("load", makeBeerRequest("http://api.brewerydb.com/v2/beers?key=b0ea11da6b4664a3b34cd203de153077&styleId=" + defaultStyleId));
 window.addEventListener("load", makeBeerStyleRequest("http://api.brewerydb.com/v2/styles?key=b0ea11da6b4664a3b34cd203de153077"));
-
-
 
 // <div>Icons made by <a href="http://www.flaticon.com/authors/madebyoliver" title="Madebyoliver">Madebyoliver</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
