@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Beer Fellows</title>
+    <script type="text/javascript" src="js/app.js"></script>
+    <style>
+      aside {
+        float: left;
+        width: 300px;
+      }
+
+      ul {
+        padding: 5px;
+      }
+
+      li {
+        list-style: none;
+        cursor: pointer;
+        background-color: #eeffff;
+      }
+
+      #pageNavigation li {
+        display: inline;
+        padding: 5px;
+      }
+
+      li:nth-child(odd) {
+        background-color: white;
+      }
+
+      li:hover {
+        background-color: yellow;
+      }
+
+      section {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      .beer {
+        background-color: #eeffff;
+        border: 1px solid gray;
+        width: 200px;
+        /*height: 256px;*/
+        /*overflow: scroll;*/
+        margin: 5px;
+        text-align: center;
+      }
+
+      .beer p {
+        margin-top: 1px;
+        margin-bottom: 1px;
+      }
+
+      .beerImg {
+        /*height: 256px;*/
+        float: left;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a href="cart.html" id="cart">Cart (0)</a>
+    </header>
+    <aside>
+      <ul id="filters"></ul>
+    </aside>
+    <h1 id="style"></h1>
+    <section id="store"></section>
+    <footer>
+      <ul id="pageNavigation">
+      </ul>
+    </footer>
+  </body>
+</html>
