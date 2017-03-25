@@ -22,7 +22,7 @@ h1{
 #featuredBeers{
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   margin-bottom: 10px
 }
 .img{
@@ -122,6 +122,7 @@ h1{
 @media only screen and (max-width: 300px) {
   .prev, .next,.text {font-size: 11px}
 }
+
 </style>
   </head>
   <body>
@@ -160,6 +161,7 @@ h1{
         <span class="dot" onclick="currentSlide(2)"></span>
         <span class="dot" onclick="currentSlide(3)"></span>
       </div>
+
       <script>
       var slideIndex = 1;
       showSlides(slideIndex);
@@ -190,9 +192,9 @@ h1{
       </script>
 
     <div id="featuredBeers">
-      <img class="img" src="img/beer1.jpg" style="height:220px">
-      <img class="img" src="img/beer2.jpg" style="height:220px">
-      <img class="img" src="img/beer3.jpg" style="height:220px">
+      <a href="#"><img class="img" src="img/beer1.jpg" style="height:220px"></a>
+      <a href="#"><img class="img" src="img/beer2.jpg" style="height:220px"></a>
+      <a href="#"><img class="img" src="img/beer3.jpg" style="height:220px"></a>
     </div>
 
 
