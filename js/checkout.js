@@ -30,15 +30,30 @@ function createUser(){
   var cardNo = document.getElementById("cardNo").value;
   var exp_month = document.getElementById("exp_month").value;
   var exp_year= document.getElementById("exp_year").value;
-  var newUser= new Checkout(first, last, email, phone, address, city, state, zip, shippingAddress, shippingOption, cardNo, exp_month, exp_year);
+  var newUser = new Checkout(first, last, email, phone, address, city, state, zip, shippingAddress, shippingOption, cardNo, exp_month, exp_year);
   console.log(newUser);
+  localStorage.setItem("receipt " + Date(Date.now()), JSON.stringify(newUser));
 }
+
 function validateForm() {
+  /*
   var x = document.forms["formUser"]["email"].value;
   var atpos = x.indexOf("@");
   var dotpos = x.lastIndexOf(".");
   if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
       alert("Not a valid e-mail address");
       return false;
+  }*/
+  var validate = document.getElementsByClassName("checkout");
+  for(i=0; i<validate.length; i++){
+  if (validate[i].value == "") {
+    return false;
   }
+ }
+ createUser();
+ alert("thanks for ordering");
+}
+
+function getCartItems(){
+  var items = localStorage.getItem("Cart Contents",JSON.parse(cartList));
 }

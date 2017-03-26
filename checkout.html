@@ -39,7 +39,7 @@
     </header>
 
     <div id="checkout">
-    <form id="formUser" *onsubmit="return validateForm();" method="post">
+    <form id="formUser">
        <form id="formUser">
        <fieldset>
          <legend>Personal&amp;Billing Info</legend>
@@ -51,17 +51,17 @@
           <input type="text" id="city" class="checkout" name="city" placeholder="City" value="" required=""><br>
           <input type="text" id="state" class="checkout" name="state" placeholder="State/Providence" value="" required><br>
           <input type="number" id="zip" class="checkout" name="zip" placeholder="Zip/Postal Code" value="" required><br>
-          <input type="checkbox" id="shippingAddress" name="shippingAddress" value="true">Same as billing address
+          <input type="checkbox" id="shippingAddress" class="checkout" name="shippingAddress" value="true">Same as billing address
       </fieldset>
       <fieldset>
         <legend>Shipping Info</legend>
-        <input type="radio" name="ship" value="Standart" checked> Standart(free) <br>
-        <input type="radio" name="ship" value="Express"> Express  ($8) <br>
-        <input type="radio" name="ship" value="Overnight"> Overnight($12)
+        <input type="radio" class="checkout" name="ship" value="Standart" checked> Standart(free) <br>
+        <input type="radio" class="checkout" name="ship" value="Express"> Express  ($8) <br>
+        <input type="radio" class="checkout" name="ship" value="Overnight"> Overnight($12)
      </fieldset>
      <fieldset>
        <legend>Payment Info</legend>
-        <input type="number" id="cardNo" class="payment" name="cardno" placeholder="xxxx-xxxx-xxxx-xxxx" value="" required> <br>
+        <input type="number" id="cardNo" class="checkout" name="cardno" placeholder="xxxx-xxxx-xxxx-xxxx" value="" required> <br>
         <div class="month_select">
           <select name="exp_month" value="" id="exp_month" placeholder="" data-trigger="change" data-type="name" data-required="true" data-error-message="Enter Your Credit Card Expiration Date">
                   <option value = "1">01 (Jan)</option>
@@ -104,7 +104,7 @@
             <label>Shipping&amp;Handling........</label><br>
             <label>Total:.....................</label><br>
           </fieldset>
-          <input type="submit" onclick="createUser()" value="Submit Your Order">
+          <input type="submit" onclick="validateForm()" value="Submit Your Order">
        </form>
   </div>
   <script type="text/javascript" src="js/checkout.js"></script>
