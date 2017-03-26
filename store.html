@@ -38,14 +38,22 @@
         justify-content: space-between;
       }
 
-      .beer {
-        background-color: #eeffff;
-        border: 1px solid gray;
-        width: 200px;
-        /*height: 256px;*/
-        /*overflow: scroll;*/
+      .selectedBeer {
+        /*background-color: white;*/
+        border-top: 1px solid gray;
+        /*max-width: 600px;*/
         margin: 5px;
-        text-align: center;
+        display: block;
+        overflow: scroll;
+      }
+
+      .beer {
+        /*background-color: #eeffff;*/
+        border-top: 1px solid gray;
+        width: 30%;
+        min-width: 200px;
+        margin: 5px;
+        /*text-align: center;*/
       }
 
       .beer p {
@@ -57,20 +65,43 @@
         /*height: 256px;*/
         float: left;
       }
+
+      .quantityPicker {
+        width: 20px;
+      }
+
+      #details {
+        display: none;
+      }
+
+      .hiddenSubList {
+        display: none;
+        background-color: green;
+      }
+
     </style>
   </head>
   <body>
     <header>
-      <a href="cart.html" id="cart">Cart (0)</a>
+      <div id="logo"></div>
+      <h1>Beer Fellows Home</h1>
+      <div id="input">
+        <input id="cart" type="button" onclick="location.href='checkout.html';" value="Shopping Cart" />
+        <input type="text" class="search" placeholder="Search..">
+        <input type="button" value="Search">
+      </div>
     </header>
     <aside>
       <ul id="filters"></ul>
     </aside>
     <h1 id="style"></h1>
     <section id="store"></section>
-    <footer>
+    <section>
       <ul id="pageNavigation">
       </ul>
-    </footer>
+    </section>
+    <section id="details">
+      <h1>Beer Name</h1>
+    </section>
   </body>
 </html>
