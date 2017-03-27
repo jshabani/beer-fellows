@@ -29,10 +29,10 @@ function Beer() {
 }
 
 // style object constructor
-function BeerStyle(name, id) {
-  this.name = name;
-  this.id = id;
-  this.categoryName = "";
+function BeerStyle() {
+  this.id = "";
+  this.name = "";
+  this.categoryId = "";
 }
 
 function CartItem(name, qty, eachPrice) {
@@ -191,9 +191,10 @@ function goToBeerPage(pageNumber) {
 
 function removeAllBeers() {
   beerList = [];
-  var oldBeers = document.getElementById("store");
-  while (oldBeers.firstChild) {
-    oldBeers.removeChild(oldBeers.firstChild);
+  var container = document.getElementById("store");
+  var oldBeers = document.getElementsByClassName("beer");
+  for (var i = 0; i < oldBeers.length; i++) {
+    container.removeChild(oldBeers[i]);
   }
 }
 
@@ -223,7 +224,7 @@ function addBeersToPage() {
     beerCard.appendChild(ibu);
 
     var price = document.createElement("p");
-    price.textContent += "$" + beerList[i].price;
+    price.textContent += "$" + beerList[i].price + " pint";
     beerCard.appendChild(price);
 
     var qty = document.createElement("input");
@@ -315,7 +316,8 @@ function addBeerStylesToPage() {
     var categoryListItem = document.createElement("li");
     categoryListItem.setAttribute("onclick", "expandStyleList(" + i + ")");
     categoryListItem.textContent = beerCategoryList[i];
-    // filterList.appendChild(categoryListItem);
+    filterList.appendChild(categoryListItem);
+
     // make sub-list for styles
     var stylesList = document.createElement("ul");
     stylesList.setAttribute("id", "categoryStyleList" + i);
@@ -324,22 +326,33 @@ function addBeerStylesToPage() {
     for (var j = 0; j < beerStyleList.length; j++) {
       if (beerStyleList[j].categoryName == beerCategoryList[i]) {
         var styleListItem = document.createElement("li");
+        styleListItem.setAttribute("onclick", "getBeerByStyleId(" + beerStyleList[j].id + ")");
         styleListItem.textContent = beerStyleList[j].name;
         stylesList.appendChild(styleListItem);
       }
     }
-    categoryListItem.appendChild(stylesList);
-    filterList.appendChild(categoryListItem);
+    filterList.appendChild(stylesList);
+
   }
 }
 
+// toggle view of sub-list
 function expandStyleList(categoryNumber) {
   var listToShow = document.getElementById("categoryStyleList" + categoryNumber);
-  listToShow.style.display = "inline";
+  if (listToShow.style.display === "none") {
+    listToShow.style.display = "inline-block";
+  } else {
+    listToShow.style.display = "none";
+  }
 }
 
 function getBeerByStyleId(styleId) {
   currentStyleId = styleId;
+
+  // var headerElement = document.getElementById("style");
+  // var headerText = beerStyleList.indexOf({ id: styleId });
+  // headerElement.textContent = headerText;
+
   removeAllBeers();
   // do the api call and update the page
   var url = "http://api.brewerydb.com/v2/beers?key=b0ea11da6b4664a3b34cd203de153077&styleId=" + styleId;
@@ -358,11 +371,13 @@ function viewBeerDetails(beerNumber) {
     button.value = "Hide Details";
     selectedBeer.setAttribute("class", "selectedBeer");
     image.src = beerList[beerNumber].imgLinkLarge;
+    alert("changing to: " + beerList[beerNumber].imgLinkLarge);
   } else {
     descriptionToShow.style.display = "none";
     button.value = "Show Details";
     selectedBeer.setAttribute("class", "beer");
     image.src = beerList[beerNumber].imgLinkSmall;
+    alert("changing to : " + beerList[beerNumber].imgLinkSmall);
   }
   console.log(image.src);
 }
