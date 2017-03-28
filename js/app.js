@@ -190,11 +190,20 @@ function goToBeerPage(pageNumber) {
 }
 
 function removeAllBeers() {
+  // clear existing list
   beerList = [];
+  // remove beers
   var container = document.getElementById("store");
   var oldBeers = document.getElementsByClassName("beer");
   for (var i = 0; i < oldBeers.length; i++) {
     container.removeChild(oldBeers[i]);
+  }
+  // check if any beers with the selcted class and remove
+  var oldSelectedBeers = document.getElementsByClassName("selectedBeer");
+  if (oldSelectedBeers.length > 0) {
+    for (var i = 0; i < oldSelectedBeers.length; i++) {
+      container.removeChild(oldSelectedBeers[i]);
+    }
   }
 }
 
@@ -360,26 +369,22 @@ function getBeerByStyleId(styleId) {
 }
 
 function viewBeerDetails(beerNumber) {
+  var selectedBeer = document.getElementById("beer_" + beerNumber); // id of the div
+  var id = "beerDetails" + beerNumber;
   var descriptionToShow = document.getElementById("beerDetails" + beerNumber);
   var button = document.getElementById("detailsButton" + beerNumber);
-  var selectedBeer = document.getElementById("beer_" + beerNumber); // id of the div
-  var image = selectedBeer.getElementsByTagName("img"); // get image in div
-  console.log(image);
-
-  if (descriptionToShow.style.display == "none") {
+  var images = selectedBeer.getElementsByTagName("img");
+  if (descriptionToShow.style.display === "none") {
+    selectedBeer.setAttribute("class", "selectedBeer");
     descriptionToShow.style.display = "inline";
     button.value = "Hide Details";
-    selectedBeer.setAttribute("class", "selectedBeer");
-    image.src = beerList[beerNumber].imgLinkLarge;
-    alert("changing to: " + beerList[beerNumber].imgLinkLarge);
+    images[0].src = beerList[beerNumber].imgLinkLarge;
   } else {
+    selectedBeer.setAttribute("class", "beer");
     descriptionToShow.style.display = "none";
     button.value = "Show Details";
-    selectedBeer.setAttribute("class", "beer");
-    image.src = beerList[beerNumber].imgLinkSmall;
-    alert("changing to : " + beerList[beerNumber].imgLinkSmall);
+    images[0].src = beerList[beerNumber].imgLinkSmall;
   }
-  console.log(image.src);
 }
 
 function addToCart(beerNumber) {
