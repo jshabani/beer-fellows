@@ -248,7 +248,19 @@ function addToQty(beerNumber) {
   alert("still working on this");
 }
 
+function getDataOnLoad() {
+  // get beer data
+  makeBeerRequest("http://api.brewerydb.com/v2/beers?key=b0ea11da6b4664a3b34cd203de153077&styleId=" + defaultStyleId);
+  // get beer category data
+  makeBeerCategoryRequest("http://api.brewerydb.com/v2/categories?key=b0ea11da6b4664a3b34cd203de153077");
+  // get beer style data
+  makeBeerStyleRequest("http://api.brewerydb.com/v2/styles?key=b0ea11da6b4664a3b34cd203de153077");
+  // add beer styles to page
+  addBeerStylesToPage();
+  // add beers to page
+  addBeersToPage();
+
+}
+
 // do this on page load
-window.addEventListener("load", makeBeerRequest("http://api.brewerydb.com/v2/beers?key=b0ea11da6b4664a3b34cd203de153077&styleId=" + defaultStyleId));
-window.addEventListener("load", makeBeerCategoryRequest("http://api.brewerydb.com/v2/categories?key=b0ea11da6b4664a3b34cd203de153077"));
-window.addEventListener("load", makeBeerStyleRequest("http://api.brewerydb.com/v2/styles?key=b0ea11da6b4664a3b34cd203de153077"));
+window.addEventListener("load", getDataOnLoad());
