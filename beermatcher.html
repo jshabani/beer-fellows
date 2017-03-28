@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <link href="beermatcher1.css" type="text/css" rel="stylesheet"
+</head>
+<body>
+  <section id="image-container"></section>
+  <section id="style-description"></section>
+  <form id="beerMatcher">
+    <fieldset> <br />
+      <legend>Beer Matcher</legend>
+      <label for="climateQuiz" ><font color="red">What climate do you live in?</font> <br />
+      <select id="climateQuiz" name="climateQuiz">
+        <option SELECTED VALUE="0">-- Choose an answer --</option>
+        <option value="Oregonnorth">Hot</option>
+        <option value="Oregonsouth">Cold</option>
+        <option value="Oregoneast">Mild</option>
+        <option value="Oregonwest">Rainy</option>
+      </select> <br />
+      <label for="locationQuiz"><font color="orange">Where are you from?</font> <br />
+      <select id="locationQuiz" name="locationQuiz">
+        <option SELECTED VALUE="0">-- Choose an answer --</option>
+        <option value="asia">Asia</option>
+        <option value="africa">Africa</option>
+        <option value="europe">Europe</option>
+        <option value="northamerica">North America</option>
+        <option value="southamerica">South America</option>
+      </select> <br />
+      <label for="foodQuiz"><font color="green">What kind of food do you like?</font> <br />
+      <select id="foodQuiz" name="foodQuiz">
+        <option SELECTED VALUE="0">-- Choose an answer --</option>
+        <option value="burgers">Burgers or Sandwish</option>
+        <option value="fish">Fish and Chips</option>
+        <option value="chicken">Wings</option>
+        <option value="Oregonwest">Nachos</option>
+      </select> <br />
+      <label for="colorQuiz"><font color="blue">How dark do you like your beer?</font> <br />
+      <select id="colorQuiz" name="colorQuiz">
+        <option SELECTED VALUE="0">-- Choose an answer --</option>
+        <option value="">Pale</option>
+        <option value="red">Red</option>
+        <option value="green">Dark</option>
+        <option value="dark">Stout</option>
+      </select> <br />
+      <label><font color="brown">How strong or bitter do you like your beer?</font></label> <br />
+        <p>ABV: <input type="text" name="alcoholvolume" placeholder="Alcohol By Volume" /></p>
+        <p>IBU: <input type="text" name="bitteringunit" placeholder="International Bittering Unit" /></p>
+      <label for="venueQuiz"><font color="purple">Where do you like to drink?</font> <br />
+      <select id="venueQuiz" name="venueQuiz">
+        <option SELECTED VALUE="0">-- Choose an answer --</option>
+        <option value="bars">Bars</option>
+        <option value="clubs">Clubs</option>
+        <option value="events">Events</option>
+        <option value="home">Home</option>
+      </select> <br />
+      <label for="partnerQuiz"><font color="green">Who do you like to drink with?</font> <br />
+      <select id="partnerQuiz" name="partnerQuiz">
+        <option SELECTED VALUE="0">-- Choose an answer --</option>
+        <option value="bars">All by myself</option>
+        <option value="clubs">With friends</option>
+        <option value="events">With family</option>
+        <option value="home">With strangers</option>
+      </select> <br />
+      <br />
+
+      </fieldset>
+      <input type="submit" name="submit" value="Try your luck!!" onClick="myButton()" >
+
+</form>
+
+<style>
+
+</style>
+
+<script type="text/javascript" src="beermatcher2.js"></script>
+
+            <progress value="22" max="100">
+            </progress>
+          </body>
+          <html>
