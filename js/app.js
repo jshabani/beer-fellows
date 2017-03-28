@@ -64,13 +64,9 @@ function makeBeerContent() {
         makePageNavigation(results.numberOfPages);
       }
       var beersArray = results.data;
-      // console.log(results.data);
-      // loop through results
       for (var i = 0; i < beersArray.length; i++) {
         makeBeerObject(beersArray[i]);
       }
-      // add beers to page
-      addBeersToPage();
     } else {
       alert('There was a problem with the request.');
     }
@@ -165,7 +161,6 @@ function makeBeerStyleContent() {
           beerStyleList.push(style);
         }
       }
-      addBeerStylesToPage();
     } else {
       alert('There was a problem with the request.');
     }
