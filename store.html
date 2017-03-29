@@ -4,7 +4,6 @@
     <title>Beer Fellows</title>
     <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
     <script type="text/javascript" src="js/app.js"></script>
-    <script type="text/javascript" src="js/store.js"></script>
     <style>
       body {
         font-family: "Dosis", sans-serif;
@@ -44,20 +43,17 @@
       }
 
       .selectedBeer {
-        /*background-color: white;*/
         border-top: 1px solid gray;
-        /*max-width: 600px;*/
         margin: 5px;
         display: block;
+        width: calc(100% - 300px);
       }
 
       .beer {
-        /*background-color: #eeffff;*/
         border-top: 1px solid gray;
         width: 30%;
         min-width: 200px;
         margin: 5px;
-        /*text-align: center;*/
       }
 
       .beer p {
@@ -66,7 +62,6 @@
       }
 
       .beerImg {
-        /*height: 256px;*/
         float: left;
         padding-right: 5px;
       }
@@ -100,14 +95,10 @@
       <ul id="filters"></ul>
     </aside>
     <section id="store">
-      <!-- <h1 id="styleName">Beer Style Name</h1> -->
     </section>
     <section>
       <ul id="pageNavigation">
       </ul>
-    </section>
-    <section id="details">
-      <h1>Beer Name</h1>
     </section>
   </body>
 </html>
