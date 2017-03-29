@@ -1,3 +1,4 @@
+var cartList=JSON.parse(localStorage.getItem("Cart Contents").split(","));
 
 function Checkout(first, last, email, phone, address, city, state, zip, shippingAddress, shippingOption, cardNo, exp_month, exp_year) {
   this.firstName = first;
@@ -55,29 +56,72 @@ alert("thanks for ordering");
 }
 
 function getCartItems(){
-  //var items = localStorage.getItem("Cart Contents",JSON.parse(cartList));
-  var items = [1,2,3,4,5,6,7];
-  var ul = document.getElementById("cartUl");
-  for(i=0; i<items.length; i++){
-    var li = document.createElement("li");
-    li.textContent=items[i];
-    ul.appendChild(li);
-  }
-  var liShipping = document.createElement("li");
-  var dataShipping = parseInt(document.getElementById("formUser").ship.value);
-  liShipping.textContent=dataShipping;
-  ul.appendChild(liShipping);
-  console.log(dataShipping);
+//table header
+var table = document.getElementById("cartTable");
+var headerRow = document.createElement("tr");
+var headerCell1 = document.createElement("th");
+headerCell1.textContent=("Items");
+var headerCell2 = document.createElement("th");
+headerCell2.textContent=("Qty");
+var headerCell3 = document.createElement("th");
+headerCell3.textContent=("Price");
+headerRow.appendChild(headerCell1);
+headerRow.appendChild(headerCell2);
+headerRow.appendChild(headerCell3);
+table.appendChild(headerRow);
+//table Items
+for (var i = 0 ; i < cartList.length; i++) {
+  var row = document.createElement("tr");
+  var cell1 = document.createElement("td");
+  cell1.textContent = cartList[i].name;
+  row.appendChild(cell1);
 
-  var subTotal=0;
-  for(i=0; i<items.length;i++){
-    subTotal+= items[i];
-  }
-  console.log(subTotal);
-  var liTotal = document.createElement("li");
-  var dataTotal = dataShipping+subTotal;
-  liTotal.textContent=dataTotal;
-  ul.appendChild(liTotal);
+  var cell2 = document.createElement("td");
+  cell2.textContent = cartList[i].qty;
+  row.appendChild(cell2);
+
+  var cell3 = document.createElement("td");
+  cell3.textContent = cartList[i].eachPrice;
+  row.appendChild(cell3);
+  table.appendChild(row);
+ }
+ //table subtotal
+ var rowSubTotal = document.createElement("tr");
+  var cellSubTotal1 = document.createElement("td");
+  cellSubTotal1.textContent = "SubTotal.................";
+  cellSubTotal1.setAttribute("colspan","2");
+ var totalItems=0;
+ for(i=0; i<cartList.length;i++){
+   totalItems+= parseFloat(cartList[i].qty*cartList[i].eachPrice);
+ }
+ var subTotal = totalItems.toFixed(2);
+ var cellSubTotal2 = document.createElement("td");
+ cellSubTotal2.textContent = subTotal;
+ rowSubTotal.appendChild(cellSubTotal1);
+ rowSubTotal.appendChild(cellSubTotal2);
+ table.appendChild(rowSubTotal);
+ //table shipping
+ var shippingCost = parseFloat(document.getElementById("formUser").ship.value).toFixed(2);
+ var rowShipping = document.createElement("tr");
+ var cellShipping1 = document.createElement("td");
+ cellShipping1.textContent = "Shipping Fee...........";
+ cellShipping1.setAttribute("colspan","2");
+ var cellShipping2 = document.createElement("td");
+ cellShipping2.textContent = shippingCost;
+ rowShipping.appendChild(cellShipping1);
+ rowShipping.appendChild(cellShipping2);
+ table.appendChild(rowShipping);
+ //table total
+ var rowTotal = document.createElement("tr");
+ var cellTotal1 = document.createElement("td");
+ cellTotal1.textContent = "Total......................";
+ cellTotal1.setAttribute("colspan","2");
+ var cellTotal2 = document.createElement("td");
+ cellTotal2.textContent = parseFloat(subTotal)+parseFloat(shippingCost);
+ rowTotal.appendChild(cellTotal1);
+ rowTotal.appendChild(cellTotal2);
+ table.appendChild(rowTotal);
 
 }
-getCartItems();
+
+window.addEventListener("load", getCartItems());
