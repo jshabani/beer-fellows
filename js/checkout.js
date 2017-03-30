@@ -37,14 +37,6 @@ function createUser(){
 }
 
 function validateForm() {
-  /*
-  var x = document.forms["formUser"]["email"].value;
-  var atpos = x.indexOf("@");
-  var dotpos = x.lastIndexOf(".");
-  if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
-  alert("Not a valid e-mail address");
-  return false;
-}*/
 var validate = document.getElementsByClassName("checkout");
 for(i=0; i<validate.length; i++){
   if (validate[i].value == "") {
@@ -55,9 +47,11 @@ createUser();
 alert("thanks for ordering");
 }
 
+
 function getCartItems(){
 //table header
 var table = document.getElementById("cartTable");
+table.innerHTML = "";
 var headerRow = document.createElement("tr");
 var headerCell1 = document.createElement("th");
 headerCell1.textContent=("Items");
@@ -117,11 +111,16 @@ for (var i = 0 ; i < cartList.length; i++) {
  cellTotal1.textContent = "Total......................";
  cellTotal1.setAttribute("colspan","2");
  var cellTotal2 = document.createElement("td");
- cellTotal2.textContent = parseFloat(subTotal)+parseFloat(shippingCost);
+ cellTotal2.textContent = (parseFloat(subTotal)+parseFloat(shippingCost)).toFixed(2);
  rowTotal.appendChild(cellTotal1);
  rowTotal.appendChild(cellTotal2);
  table.appendChild(rowTotal);
 
 }
 
+var radioGroup = document.getElementById("formUser").ship;
+for(i=0; i<radioGroup.length; i++){
+  radioGroup[i].onclick = getCartItems;
+
+}
 window.addEventListener("load", getCartItems());
