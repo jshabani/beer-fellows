@@ -1,0 +1,83 @@
+aside {
+  float: left;
+  width: 300px;
+}
+
+aside ul {
+  padding: 5px;
+}
+
+aside li {
+  list-style: none;
+  cursor: pointer;
+  background-color: #f2f2f2;
+}
+
+aside li:nth-child(odd) {
+  background-color: white;
+}
+
+aside li:hover {
+  color: white;
+  background-color: #333;
+}
+
+#pageNavigation {
+  margin: 10px;
+  padding: 0;
+  cursor: pointer;
+}
+
+#pageNavigation li {
+  display: inline;
+  padding: 5px;
+}
+
+#pageNavigation li:hover {
+  color: white;
+  background-color: #333;
+}
+
+section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.selectedBeer {
+  border-top: 1px solid gray;
+  margin: 5px;
+  display: block;
+  width: calc(100% - 300px);
+}
+
+.beer {
+  border-top: 1px solid gray;
+  width: 30%;
+  min-width: 200px;
+  margin: 5px;
+}
+
+.beer p {
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+
+.beerImg {
+  float: left;
+  padding-right: 5px;
+}
+
+.quantityPicker {
+  width: 20px;
+  text-align: center;
+}
+
+#details {
+  display: none;
+}
+
+.hiddenSubList {
+  display: none;
+  padding-left: 10px;
+}
