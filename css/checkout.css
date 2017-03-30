@@ -1,0 +1,32 @@
+#checkoutContainer {
+  width: 60%;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+#billingInfo.label {
+  display: inline-block;
+  width: 200px;
+}
+
+.checkout {
+  padding: 10px;
+}
+
+
+.flexForm {
+  /*display: flex;*/
+  /*flex-flow: wrap;*/
+  /*justify-content: space-between;*/
+  /*margin: 5px;*/
+}
+
+#billingInfo {
+  width: 500px;
+}
+
+tr {
+  border: 1px dashed grey;
+}
+
+/*#fname { width: 100px};*/

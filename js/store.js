@@ -264,12 +264,14 @@ function addBeersToPage() {
 
     var addQuantity = document.createElement("input");
     addQuantity.setAttribute("type", "button");
+    addQuantity.setAttribute("class", "button");
     addQuantity.setAttribute("value", "+");
     addQuantity.setAttribute("onclick", "addToQty('" + beerList[i].id + "')");
     beerCard.appendChild(addQuantity);
 
     var cartButton = document.createElement("input");
     cartButton.setAttribute("type", "button");
+    cartButton.setAttribute("class", "button");
     cartButton.setAttribute("value", "Add to Cart");
     cartButton.setAttribute("onclick", "addToCart('" + beerList[i].id + "')");
     beerCard.appendChild(cartButton);
@@ -279,6 +281,7 @@ function addBeersToPage() {
     var detailsButton = document.createElement("input");
     detailsButton.setAttribute("id", "detailsButton_" + beerList[i].id);
     detailsButton.setAttribute("type", "button");
+    detailsButton.setAttribute("class", "button");
     detailsButton.setAttribute("value", "Show Details");
     detailsButton.setAttribute("onclick", "viewBeerDetails('" + beerList[i].id + "')");
     beerCard.appendChild(detailsButton);
