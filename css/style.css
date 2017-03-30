@@ -1,0 +1,74 @@
+html, body {
+  margin: 0 auto;
+}
+
+header, body {
+  font-family: "Raleway", "Veranda", sans-serif;
+}
+
+/* HEADER */
+
+header {
+  height: 125px;
+  text-align: center;
+  background-color: #333;
+  color: white;
+}
+
+#logoText {
+  display: inline-block;
+  margin-bottom: 0;
+  font-family: "Bungee", cursive;
+  font-size: 40px;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+nav li {
+  float: left;
+}
+
+nav li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+nav li a:hover {
+  background-color: #111;
+}
+
+.floatRight {
+  float: right;
+  vertical-align: middle;
+}
+
+.button {
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 14px;
+  background-color: #767675;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  padding: 6px;
+  margin: 5px;
+}
+
+.button:hover {
+  background-color: #333;
+}
+
+input, select {
+  font-size: 14px;
+  border: 1px solid #7F7E7E;
+  border-radius: 2px;
+}
