@@ -18,8 +18,8 @@ aside li:nth-child(odd) {
 }
 
 aside li:hover {
-  color: white;
-  background-color: #333;
+  color: #66bfff;
+  /*background-color: #333;*/
 }
 
 #pageNavigation {

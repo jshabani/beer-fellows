@@ -13,6 +13,8 @@ header {
   text-align: center;
   background-color: #333;
   color: white;
+  /*position: fixed;*/
+  /*width: 100%;*/
 }
 
 #logoText {
@@ -42,7 +44,9 @@ nav li a {
 }
 
 nav li a:hover {
-  background-color: #111;
+  /*background-color: #111;*/
+  background-color: rgba(255, 69, 0, .7);
+  color: white;
 }
 
 .floatRight {
@@ -50,25 +54,38 @@ nav li a:hover {
   vertical-align: middle;
 }
 
-.button {
+.button, .bigButton {
   color: white;
   text-align: center;
   vertical-align: middle;
-  font-size: 14px;
   background-color: #767675;
   color: white;
   border-radius: 5px;
   border: none;
-  padding: 6px;
   margin: 5px;
 }
 
-.button:hover {
+.button {
+  font-size: 14px;
+  padding: 6px;
+}
+
+.bigButton {
+  font-size: 24px;
+  padding: 10px;
+}
+
+.button:hover, .bigButton:hover {
   background-color: #333;
 }
 
-input, select {
+/*input, select {
   font-size: 14px;
   border: 1px solid #7F7E7E;
   border-radius: 2px;
+}*/
+
+footer {
+  background-color: #333;
+  height: 300px;
 }

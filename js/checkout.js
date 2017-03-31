@@ -98,7 +98,7 @@ for (var i = 0 ; i < cartList.length; i++) {
  //table subtotal
  var rowSubTotal = document.createElement("tr");
   var cellSubTotal1 = document.createElement("td");
-  cellSubTotal1.textContent = "SubTotal.................";
+  cellSubTotal1.textContent = "SubTotal";
   cellSubTotal1.setAttribute("colspan","2");
  var totalItems=0;
  for(i=0; i<cartList.length;i++){

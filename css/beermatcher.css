@@ -1,13 +1,18 @@
-body {
-  margin-bottom: 50px;
-}
-
-#beerMatcher {
-  width: 60%;
-  max-width: 600px;
-  margin: 0 auto;
+#beerMatcher, #results {
   color: #333;
   font-size: 18px;
+  width: 60%;
+  margin: 50px auto;
+  max-width: 600px;
+}
+
+#results {
+  display: none;
+  background-color: #f2f2f2;
+  border: 1px solid #333;
+  border-radius: 5px;
+  padding-bottom: 20px;
+  transition: visibility 0.6s ease;
 }
 
 fieldset {
@@ -29,45 +34,31 @@ legend {
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-.pickChoice {
-  /*float: right;*/
-}
-
-input[type=text], select {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 10px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+input[type=text], input[type=number], select {
+  width: 100%;
+  padding: 5px 10px;
+  margin: 3px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 12px;
 }
 
 input[type=text], select:hover {
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-#results {
-  display: none;
-  width: 60%;
-  max-width: 600px;
-  margin: 0 auto;
-  background-color: #f2f2f2;
-  border: 1px solid #333;
-  border-radius: 5px;
-  /*margin-top: 20px;
-  margin-bottom: 50px;*/
-}
-
-#style-name {
-  /*display: none;*/
-  text-align: center;
+#resultsHeading {
   font-family: "Bungee", cursive;
-  font-size: 36px;
+  text-align: center;
+}
+
+#style-name, #style-category-name {
+  text-align: center;
   margin: 20px;
 }
 
-#style-description {
-  /*display: none;*/
-  margin: 20px;
+#style-description, #submitButton {
+  margin: 10px;
 }
