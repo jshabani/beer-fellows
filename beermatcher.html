@@ -5,21 +5,21 @@
   <link href="beermatcher1.css" type="text/css" rel="stylesheet"
 </head>
 <body>
-  <section id="style-name"></section>
-  <section id="style-description"></section>
+  <div class="style-name"><h2 id="style-name"></h2></div>
+  <div class="style-description"><p id="style-description"></p></div>
   <form id="beerMatcher">
     <fieldset> <br />
       <legend>Beer Matcher</legend>
       <label for="climateQuiz" ><font color="red">What climate do you live in?</font> <br />
-      <select id="climateQuiz" name="climateQuiz">
+      <select id="climateQuiz" class="pickChoice" name="climateQuiz">
         <option value="select">-- Choose an answer --</option>
-        <option value="Oregonnorth">Hot</option>
-        <option value="Oregonsouth">Cold</option>
-        <option value="Oregoneast">Mild</option>
-        <option value="Oregonwest">Rainy</option>
+        <option value="Hot">Hot</option>
+        <option value="Cold">Cold</option>
+        <option value="Mild">Mild</option>
+        <option value="Rainy">Rainy</option>
       </select> <br />
       <label for="locationQuiz"><font color="orange">Where are you from?</font> <br />
-      <select id="locationQuiz" name="locationQuiz">
+      <select id="locationQuiz" class="pickChoice" name="locationQuiz">
         <option value="select">-- Choose an answer --</option>
         <option value="asia">Asia</option>
         <option value="africa">Africa</option>
@@ -28,7 +28,7 @@
         <option value="southamerica">South America</option>
       </select> <br />
       <label for="foodQuiz"><font color="green">What kind of food do you like?</font> <br />
-      <select id="foodQuiz" name="foodQuiz">
+      <select id="foodQuiz" class="pickChoice" name="foodQuiz">
         <option value="select">-- Choose an answer --</option>
         <option value="burgers">Burgers or Sandwish</option>
         <option value="fish">Fish and Chips</option>
@@ -36,18 +36,22 @@
         <option value="Oregonwest">Nachos</option>
       </select> <br />
       <label for="colorQuiz"><font color="blue">How dark do you like your beer?</font> <br />
-      <select id="colorQuiz" name="colorQuiz">
+      <select id="colorQuiz" class="pickChoice" name="colorQuiz">
         <option value="select">-- Choose an answer --</option>
         <option value="">Pale</option>
         <option value="red">Red</option>
         <option value="green">Dark</option>
         <option value="dark">Stout</option>
       </select> <br />
-      <label><font color="brown">How strong or bitter do you like your beer?</font></label> <br />
-        <p>ABV: <input type="text" name="alcoholvolume" placeholder="Alcohol By Volume" /></p>
-        <p>IBU: <input type="text" name="bitteringunit" placeholder="International Bittering Unit" /></p>
+      <label for="strengthQuiz"><font color="brown">How strong or bitter do you like your beer?(ABV/IBU) </font></label> <br />
+      <select id="strengthQuiz" class="pickChoice" name="strengthQuiz">
+        <option value="select">-- Choose an answer --</option>
+        <option value="bars">Low</option>
+        <option value="clubs">Medium</option>
+        <option value="events">High</option>
+      </select> <br />
       <label for="venueQuiz"><font color="purple">Where do you like to drink?</font> <br />
-      <select id="venueQuiz" name="venueQuiz">
+      <select id="venueQuiz" class="pickChoice" name="venueQuiz">
         <option value="select">-- Choose an answer --</option>
         <option value="bars">Bars</option>
         <option value="clubs">Clubs</option>
@@ -55,7 +59,7 @@
         <option value="home">Home</option>
       </select> <br />
       <label for="partnerQuiz"><font color="green">Who do you like to drink with?</font> <br />
-      <select id="partnerQuiz" name="partnerQuiz">
+      <select id="partnerQuiz" class="pickChoice" name="partnerQuiz">
         <option value="select">-- Choose an answer --</option>
         <option value="bars">All by myself</option>
         <option value="clubs">With friends</option>
@@ -63,9 +67,8 @@
         <option value="home">With strangers</option>
       </select> <br />
       <br />
-
-      </fieldset>
-      <input id="pbutton" type="submit" name="submit" value="Try your luck!!" onClick="myButton()" >
+<input id="randomizeButton" type="submit" name="submit" value="Try your luck!!" onClick="myButton()">
+</fieldset>
 
 </form>
 
@@ -79,4 +82,7 @@
             </progress>
             <section id="image-container"></section>
           </body>
+          <footer>
+            Copyright Beer Fellows  All rights reserved.
+          </footer>
           <html>

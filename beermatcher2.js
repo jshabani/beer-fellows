@@ -12,28 +12,50 @@ function quiz(form){
   var foodSelected = food.options[food.selectedIndex].value;
   var color = document.getElementById("colorQuiz");
   var colorSelected = color.options[color.selectedIndex].value;
+  var bitter = document.getElementById("strengthQuiz");
+  var bitterSelected = bitter.options[bitter.selectedIndex].value;
   var venue = document.getElementById("venueQuiz");
   var venueSelected = venue.options[venue.selectedIndex].value;
   var partner = document.getElementById("partnerQuiz");
   var partnerSelected = partner.options[partner.selectedIndex].value;
-    if (climateSelected === "select"){
-      alert("Please answer question #1");
+  var checkingQuestion = true;
+    if (climate.selectedIndex === 0){
+      climate.style.border="5px solid #0000ff";
+      var checkingQuestion= false;
    }
-   if (climateSelected === "select"){
-     alert("Please answer question #2");
+   if (location.selectedIndex === 0){
+     location.style.border="5px solid #0000ff";
+     var checkingQuestion = false;
+    // alert("Please answer question #2");
+  }
+   if (food.selectedIndex === 0){
+     food.style.border="5px solid #0000ff";
+     var checkingQuestion = false;
+     //alert("Please answer question #3");
    }
-   if (climateSelected === "select"){
-     alert("Please answer question #3");
+   if (color.selectedIndex === 0){
+     color.style.border="5px solid #0000ff";
+     var checkingQuestion = false;
+     //alert("Please answer question #4");
    }
-   if (climateSelected === "select"){
-     alert("Please answer question #4");
+   if (bitter.selectedIndex === 0){
+     bitter.style.border="5px solid #0000ff";
+     var checkingQuestion = false;
+     //alert("Please answer question #4");
    }
-   if (climateSelected === "select"){
-     alert("Please answer question #4");
-   }
-   if (climateSelected === "select"){
-	   alert("Please answer question #5");
-   }
+   if (venue.selectedIndex === 0){
+     venue.style.border="5px solid #0000ff";
+     var checkingQuestion = false;
+}
+  if (partner.selectedIndex === 0){
+    partner.style.border="5px solid #0000ff";
+    checkingQuestion = false;
+
+}
+//else {
+
+//}
+	   //alert("Please answer question #5");
    //else {
 //   Math.floor((Math.random() * 10) + 1);
 // }
@@ -152,6 +174,7 @@ function myButton(e) {
             beerStyleList.push(style);
           }
         }
+        //Randomizes the descriptions of the styles
         var j = Math.floor(Math.random() * beerStyleList.length);
         var obj = beerStyleList[j];
         console.log(obj);
@@ -159,6 +182,8 @@ function myButton(e) {
         styleName.innerHTML = obj.name;
         var styleInformation = document.getElementById("style-description");
         styleInformation.innerHTML = obj.description;
+        //styleName.addEventListener("onclick", false);
+        //styleInformation.addEventListener("onclick", false);
       } else {
         alert('There was a problem with the request.');
       }
@@ -172,7 +197,7 @@ function Styles() {
 function styleRandomizer (){
   makeBeerStyleRequest("http://api.brewerydb.com/v2/styles?key=b0ea11da6b4664a3b34cd203de153077");
   console.log(beerStyleList);
-
+  //var
 
 //  obj.description =
 //  var styleDescription = document.getElementById("")
@@ -194,3 +219,5 @@ function styleRandomizer (){
 // function myProgressbar() {
 //
 // }
+window.addEventListener("onclick", makeBeerStyleContent);
+window.addEventListener("onclick", styleRandomizer);
