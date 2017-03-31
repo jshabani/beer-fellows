@@ -3,6 +3,7 @@
 <head>
   <title>Beer Fellow Shopping Cart</title>
   <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/checkout.css">
   <link href="https://fonts.googleapis.com/css?family=Bungee|Raleway" rel="stylesheet">
 </head>
 <body>
@@ -23,6 +24,7 @@
 
   <div id="checkoutContainer">
     <form id="formUser">
+      <div id="leftForm">
         <fieldset id="billingInfo">
           <legend>Personal &amp; Billing Info</legend>
           <label for="fname">First Name</label>
@@ -37,27 +39,28 @@
           <input type="text" id="address" class="checkout" name="adress" placeholder="Address" value="" required><br>
           <label for="city">City</label>
           <input type="text" id="city" class="checkout" name="city" placeholder="City" value="" required=""><br>
-          <label for="state">Stage</label>
+          <label for="state">State</label>
           <input type="text" id="state" class="checkout" name="state" placeholder="State/Providence" value="" required><br>
           <label for="zip">Zip Code</label>
           <input type="number" id="zip" class="checkout" name="zip" placeholder="Zip/Postal Code" value="" required><br>
           <input type="checkbox" id="shippingAddress" class="checkout" name="shippingAddress" value="true">Same as billing address
         </fieldset>
+      </div>
 
-      <div class="flexForm">
-        <fieldset>
+      <div class="rightForm">
+        <fieldset id="shippingForm">
           <legend>Shipping Type</legend>
           <input type="radio" class="checkout" name="ship" value=4.00 checked> Standard ($4.00) <br>
           <input type="radio" class="checkout" name="ship" value=8.00> Express ($8.00) <br>
           <input type="radio" class="checkout" name="ship" value=12.00> Overnight ($12.00)
         </fieldset>
 
-        <fieldset>
+        <fieldset id="paymentForm">
           <legend>Payment Info</legend>
           <label>Credit Card Number</label>
           <input type="number" id="cardNo" class="checkout" name="cardno" placeholder="xxxx-xxxx-xxxx-xxxx" value="" required> <br>
           <label>Expiration Date</label>
-          <div class="month_select">
+          <div>
             <select name="exp_month" value="" id="exp_month" placeholder="" data-trigger="change" data-type="name" data-required="true" data-error-message="Enter Your Credit Card Expiration Date">
               <option value = "1">01 (Jan)</option>
               <option value = "2">02 (Feb)</option>
@@ -73,7 +76,7 @@
               <option value = "12">12 (Dec)</option>
             </select>
           </div>
-          <div class="year_select">
+          <div>
             <select name="exp_year" value="" id="exp_year" placeholder="" data-trigger="change" data-type="name" data-required="true" data-error-message="Enter Your Credit Card Expiration Date">
               <option value = "1">14 </option>
               <option value = "2">15 (Feb)</option>
@@ -91,15 +94,16 @@
           </div>
         </fieldset>
 
-      <fieldset>
+      <fieldset id="orderSummary">
         <legend>Order Summary</legend>
         <table id="cartTable"></table>
       </fieldset>
       </div>
-      <input class="button" type="submit" onclick="validateForm()" value="Submit Your Order">
+      <input class="bigButton" type="submit" onclick="validateForm()" value="Submit Your Order">
     </form>
   </div>
-
+  <footer>
+  </footer>
   <script type="text/javascript" src="js/checkout.js"></script>
 </body>
 </html>

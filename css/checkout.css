@@ -1,32 +1,90 @@
 #checkoutContainer {
-  width: 60%;
-  margin-left: 20%;
-  margin-right: 20%;
+  margin: 0 auto;
+  /*color: #333;*/
+  font-size: 18px;
+  width: 940px;
+  margin-bottom: 50px;
 }
 
-#billingInfo.label {
-  display: inline-block;
+#leftForm {
+  float: left;
+  width: 400px;
+}
+
+#rightForm {
+  float: right;
+  margin-left: 410px;
   width: 200px;
 }
 
-.checkout {
-  padding: 10px;
-}
-
-
-.flexForm {
-  /*display: flex;*/
-  /*flex-flow: wrap;*/
-  /*justify-content: space-between;*/
-  /*margin: 5px;*/
-}
-
 #billingInfo {
-  width: 500px;
+  width: 350px;
+  height: 100%;
+}
+
+#shippingForm {
+  width: 200px;
+}
+
+#paymentForm {
+  width: 200px;
+}
+
+#orderForm {
+  width: 200px;
+}
+
+#orderSummary {
+  width: calc(100% - 450px);
+}
+
+fieldset {
+  width: 100%;
+  display: inline-block;
+  vertical-align: top;
+  text-align: left;
+  background-color: #f2f2f2;
+  border: 1px solid #333;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+legend {
+  color: #333;
+  font-family: "Bungee", cursive;
+  background-color: #efefef;
+  border: 1px solid #333;
+  border-radius: 5px;
+  padding: 10px 20px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+input[type=text], input[type=number], select {
+  width: 100%;
+  padding: 5px 10px;
+  margin: 3px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 12px;
+}
+
+#cartTable {
+  width: 100%;
 }
 
 tr {
-  border: 1px dashed grey;
+  border-top: 1px solid red;
 }
 
-/*#fname { width: 100px};*/
+/*tr:nth-child(even) {
+  background-color: #767675;
+}*/
+
+
+
+tr:last-child {
+  color: rgb(255, 69, 0);
+}

@@ -9,17 +9,25 @@ var httpBeerRequest;
 var httpStyleRequest;
 var httpCategoryRequest;
 
-// function updateNavText() {
-  // check if localStorage exists
-  if (localStorage.getItem("Cart Total") !== null) {
-    cartTotal = JSON.parse(localStorage.getItem("Cart Total").split(","));
-    // set header nav text
-    var navText = document.getElementById("cart");
-    if (cartTotal !== "") {
-      navText.textContent = "Shopping Cart ($" + cartTotal + ")";
-    }
+// check if localStorage exists
+if (localStorage.getItem("Cart Total") !== null) {
+  cartTotal = JSON.parse(localStorage.getItem("Cart Total").split(","));
+  // set header nav text
+  var navText = document.getElementById("cart");
+  if (cartTotal !== "") {
+    navText.textContent = "Shopping Cart ($" + cartTotal + ")";
   }
-// }
+}
+
+// check if localStorage exists
+if (localStorage.getItem("Matched Beer Style") !== null) {
+  var beerMatcherResult = JSON.parse(localStorage.getItem("Matched Beer Style").split(","));
+  // TODO: this is not working
+  // var currentStyleId = beerMatcherResult.id;
+  // getBeerByStyleId(currentStyleId);
+} else  {
+  var currentStyleId = defaultStyleId;
+}
 
 // beer object constructor
 function Beer() {
