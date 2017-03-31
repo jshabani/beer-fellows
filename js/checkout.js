@@ -44,7 +44,7 @@ for(i=0; i<validate.length; i++){
   }
 }
 createUser();
-alert("thanks for ordering");
+alert("Thanks you for choosing Beer Fellows. Your order will be shipped in 24 hours. Cheers!!");
 }
 
 
@@ -75,7 +75,7 @@ for (var i = 0 ; i < cartList.length; i++) {
   row.appendChild(cell2);
 
   var cell3 = document.createElement("td");
-  cell3.textContent = cartList[i].eachPrice;
+  cell3.textContent = "$"+cartList[i].eachPrice;
   row.appendChild(cell3);
   table.appendChild(row);
  }
@@ -90,7 +90,7 @@ for (var i = 0 ; i < cartList.length; i++) {
  }
  var subTotal = totalItems.toFixed(2);
  var cellSubTotal2 = document.createElement("td");
- cellSubTotal2.textContent = subTotal;
+ cellSubTotal2.textContent = "$"+subTotal;
  rowSubTotal.appendChild(cellSubTotal1);
  rowSubTotal.appendChild(cellSubTotal2);
  table.appendChild(rowSubTotal);
@@ -101,7 +101,7 @@ for (var i = 0 ; i < cartList.length; i++) {
  cellShipping1.textContent = "Shipping Fee...........";
  cellShipping1.setAttribute("colspan","2");
  var cellShipping2 = document.createElement("td");
- cellShipping2.textContent = shippingCost;
+ cellShipping2.textContent = "$"+shippingCost;
  rowShipping.appendChild(cellShipping1);
  rowShipping.appendChild(cellShipping2);
  table.appendChild(rowShipping);
@@ -111,7 +111,7 @@ for (var i = 0 ; i < cartList.length; i++) {
  cellTotal1.textContent = "Total......................";
  cellTotal1.setAttribute("colspan","2");
  var cellTotal2 = document.createElement("td");
- cellTotal2.textContent = (parseFloat(subTotal)+parseFloat(shippingCost)).toFixed(2);
+ cellTotal2.textContent = "$"+(parseFloat(subTotal)+parseFloat(shippingCost)).toFixed(2);
  rowTotal.appendChild(cellTotal1);
  rowTotal.appendChild(cellTotal2);
  table.appendChild(rowTotal);
