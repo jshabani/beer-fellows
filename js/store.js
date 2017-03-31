@@ -2,11 +2,24 @@ var beerList = [];
 var beerCategoryList = [];
 var beerStyleList = [];
 var cartList = [];
+var cartTotal;// = "";
 var defaultStyleId = 93;
 var currentStyleId = defaultStyleId;
 var httpBeerRequest;
 var httpStyleRequest;
 var httpCategoryRequest;
+
+// function updateNavText() {
+  // check if localStorage exists
+  if (localStorage.getItem("Cart Total") !== null) {
+    cartTotal = JSON.parse(localStorage.getItem("Cart Total").split(","));
+    // set header nav text
+    var navText = document.getElementById("cart");
+    if (cartTotal !== "") {
+      navText.textContent = "Shopping Cart ($" + cartTotal + ")";
+    }
+  }
+// }
 
 // beer object constructor
 function Beer() {
@@ -444,11 +457,12 @@ function addToCart(beerId) {
   // update button with new sub total
   var cartCount = document.getElementById("cart");
   if (cartList.length === 1 ) {
-    cartCount.value = "Shopping Cart ($" + subTotal.toFixed(2) + ")";
+    cartCount.textContent = "Shopping Cart ($" + subTotal.toFixed(2) + ")";
   } else {
-    cartCount.value = "Shopping Cart ($" + subTotal.toFixed(2) + ")";
+    cartCount.textContent = "Shopping Cart ($" + subTotal.toFixed(2) + ")";
   }
   // add to local storage
+  localStorage.setItem("Cart Total", subTotal.toFixed(2));
   localStorage.setItem("Cart Contents", JSON.stringify(cartList));
 }
 
@@ -462,3 +476,4 @@ function addToQty(beerId) {
 window.addEventListener("load", makeBeerRequest("http://api.brewerydb.com/v2/beers?key=b0ea11da6b4664a3b34cd203de153077&styleId=" + defaultStyleId));
 window.addEventListener("load", makeBeerCategoryRequest("http://api.brewerydb.com/v2/categories?key=b0ea11da6b4664a3b34cd203de153077"));
 window.addEventListener("load", makeBeerStyleRequest("http://api.brewerydb.com/v2/styles?key=b0ea11da6b4664a3b34cd203de153077"));
+// document.getElementById("cart").addEventListener("load", updateNavText);

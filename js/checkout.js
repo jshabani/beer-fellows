@@ -1,4 +1,20 @@
-var cartList=JSON.parse(localStorage.getItem("Cart Contents").split(","));
+var cartList = "";
+var cartTotal = "";
+
+// check if local storages exist
+if (localStorage.getItem("Cart Contents") !== null) {
+  cartList = JSON.parse(localStorage.getItem("Cart Contents").split(","));
+}
+// check if local storage exits
+var cartTotal = "";
+if (localStorage.getItem("Cart Total") !== null) {
+  cartTotal = JSON.parse(localStorage.getItem("Cart Total").split(","));
+  var navText = document.getElementById("cart");
+  // set header nav text
+  if (cartTotal !== "") {
+    navText.textContent = "Shopping Cart ($" + cartTotal + ")";
+  }
+}
 
 function Checkout(first, last, email, phone, address, city, state, zip, shippingAddress, shippingOption, cardNo, exp_month, exp_year) {
   this.firstName = first;
@@ -44,7 +60,7 @@ for(i=0; i<validate.length; i++){
   }
 }
 createUser();
-alert("thanks for ordering");
+alert("Thanks for choosing Beer Fellows! Your order will be shipped in 24 hours. Cheers!");
 }
 
 
@@ -75,7 +91,7 @@ for (var i = 0 ; i < cartList.length; i++) {
   row.appendChild(cell2);
 
   var cell3 = document.createElement("td");
-  cell3.textContent = cartList[i].eachPrice;
+  cell3.textContent = "$" + cartList[i].eachPrice;
   row.appendChild(cell3);
   table.appendChild(row);
  }
@@ -90,7 +106,7 @@ for (var i = 0 ; i < cartList.length; i++) {
  }
  var subTotal = totalItems.toFixed(2);
  var cellSubTotal2 = document.createElement("td");
- cellSubTotal2.textContent = subTotal;
+ cellSubTotal2.textContent = "$" + subTotal;
  rowSubTotal.appendChild(cellSubTotal1);
  rowSubTotal.appendChild(cellSubTotal2);
  table.appendChild(rowSubTotal);
@@ -98,20 +114,20 @@ for (var i = 0 ; i < cartList.length; i++) {
  var shippingCost = parseFloat(document.getElementById("formUser").ship.value).toFixed(2);
  var rowShipping = document.createElement("tr");
  var cellShipping1 = document.createElement("td");
- cellShipping1.textContent = "Shipping Fee...........";
+ cellShipping1.textContent = "Shipping Fee";
  cellShipping1.setAttribute("colspan","2");
  var cellShipping2 = document.createElement("td");
- cellShipping2.textContent = shippingCost;
+ cellShipping2.textContent = "$" + shippingCost;
  rowShipping.appendChild(cellShipping1);
  rowShipping.appendChild(cellShipping2);
  table.appendChild(rowShipping);
  //table total
  var rowTotal = document.createElement("tr");
  var cellTotal1 = document.createElement("td");
- cellTotal1.textContent = "Total......................";
+ cellTotal1.textContent = "Total";
  cellTotal1.setAttribute("colspan","2");
  var cellTotal2 = document.createElement("td");
- cellTotal2.textContent = (parseFloat(subTotal)+parseFloat(shippingCost)).toFixed(2);
+ cellTotal2.textContent = "$" + (parseFloat(subTotal)+parseFloat(shippingCost)).toFixed(2);
  rowTotal.appendChild(cellTotal1);
  rowTotal.appendChild(cellTotal2);
  table.appendChild(rowTotal);
