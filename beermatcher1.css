@@ -12,3 +12,9 @@ padding: 10px 20px;
 text-align: center;
 text-transform: uppercase;
 }
+#style-name {
+display: none;
+}
+#style-description {
+  display: none;
+}

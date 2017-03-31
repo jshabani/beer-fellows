@@ -56,48 +56,6 @@ function quiz(form){
   //else {
 
   //}
-  //alert("Please answer question #5");
-  //else {
-  //   Math.floor((Math.random() * 10) + 1);
-  // }
-  // var computerChoice = Math.random();
-  // if (computerChoice < 0.34) {
-  // 	computerChoice = "";
-  // } else if(computerChoice <= 0.67) {
-  // 	computerChoice = "";
-  // } else {
-  // 	computerChoice = "";
-  // } console.log("Computer: " + computerChoice);
-  // var compare = function(choice1, choice2) {
-  //         if (choice1 === choice2) {
-  //             return "";
-  //         }
-  //         else if (choice1 === "") {
-  //
-  //             if (choice2 === "") {
-  //             compare = "";
-  //         }
-  //             else {
-  //             compare = "";
-  //                 }
-  //             }
-  //         else if (choice1 === "") {
-  //
-  //             if (choice2 === "") {
-  //                 compare = "";
-  //                 }
-  //             else {
-  //                 compare = "";
-  //                 }
-  //             }
-  //         else if (choice1 === "") {
-  //
-  //             if (choice2 === "") {
-  //                 compare = "";
-  //                 }
-  //             else {
-  //                 compare = "";
-  //                 }
 }
 
 function Picture(source) {
@@ -127,13 +85,15 @@ function myButton(e) {
 
   document.getElementById("beermaster");
   if(quiz()) {
-    styleRandomizer();
     showImages();
+    document.getElementById("style-name").style.display = "block";
+    document.getElementById("style-description").style.display = "block";
+
   }
   //Styles();
 
 }
-
+window.addEventListener("load", styleRandomizer);
 var beerStyleList = [];
 var httpStyleRequest;
 
@@ -223,4 +183,3 @@ function styleRandomizer (){
 //
 // }
 window.addEventListener("onclick", makeBeerStyleContent);
-window.addEventListener("onclick", styleRandomizer);
