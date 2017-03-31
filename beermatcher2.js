@@ -49,9 +49,12 @@ function quiz(form){
 }
   if (partner.selectedIndex === 0){
     partner.style.border="5px solid #0000ff";
-  var checkingQuestion = false;
+    checkingQuestion = false;
 
 }
+//else {
+
+//}
 	   //alert("Please answer question #5");
    //else {
 //   Math.floor((Math.random() * 10) + 1);
@@ -194,7 +197,7 @@ function Styles() {
 function styleRandomizer (){
   makeBeerStyleRequest("http://api.brewerydb.com/v2/styles?key=b0ea11da6b4664a3b34cd203de153077");
   console.log(beerStyleList);
-
+  //var
 
 //  obj.description =
 //  var styleDescription = document.getElementById("")
