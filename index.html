@@ -14,7 +14,7 @@
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="store.html">Store</a></li>
-          <li><a href="checkout.html">Shopping Cart</a></li>
+          <li><a id="cart" href="checkout.html">Shopping Cart</a></li>
           <li><a href="beermatcher.html">My Beer Match</a></li>
           <a class="floatRight" href="https://www.facebook.com/"><img src="img/facebook-32.png"></a>
           <a class="floatRight" href="https://www.twitter.com/"><img src="img/twitter-32.png"></a>
@@ -81,5 +81,18 @@
       <a href="#"><img class="img" src="img/beer2.jpg" style="height:220px"></a>
       <a href="#"><img class="img" src="img/beer3.jpg" style="height:220px"></a>
     </div>
+
+    <script>
+      // check if local storage exits
+      var cartTotal = "";
+      if (localStorage.getItem("Cart Total") !== null) {
+        cartTotal = JSON.parse(localStorage.getItem("Cart Total").split(","));
+        var navText = document.getElementById("cart");
+        // set header nav text
+        if (cartTotal !== null) {
+          navText.textContent = "Shopping Cart ($" + cartTotal + ")";
+        }
+      }
+    </script>
   </body>
 </html>

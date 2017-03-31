@@ -1,4 +1,20 @@
-var cartList=JSON.parse(localStorage.getItem("Cart Contents").split(","));
+var cartList = "";
+var cartTotal = "";
+
+// check if local storages exist
+if (localStorage.getItem("Cart Contents") !== null) {
+  cartList = JSON.parse(localStorage.getItem("Cart Contents").split(","));
+}
+// check if local storage exits
+var cartTotal = "";
+if (localStorage.getItem("Cart Total") !== null) {
+  cartTotal = JSON.parse(localStorage.getItem("Cart Total").split(","));
+  var navText = document.getElementById("cart");
+  // set header nav text
+  if (cartTotal !== "") {
+    navText.textContent = "Shopping Cart ($" + cartTotal + ")";
+  }
+}
 
 function Checkout(first, last, email, phone, address, city, state, zip, shippingAddress, shippingOption, cardNo, exp_month, exp_year) {
   this.firstName = first;
