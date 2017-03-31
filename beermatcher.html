@@ -1,24 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title></title>
-  <link href="beermatcher1.css" type="text/css" rel="stylesheet"
+  <title>Beer Fellows Matcher</title>
+  <link href="css/style.css" type="text/css" rel="stylesheet">
+  <link href="css/beermatcher.css" type="text/css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Bungee|Raleway" rel="stylesheet">
 </head>
 <body>
-  <div class="style-name"><h2 id="style-name"></h2></div>
-  <div class="style-description"><p id="style-description"></p></div>
+  <header>
+    <div id="logo"></div>
+    <h1 id="logoText">Beer Fellows</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="store.html">Store</a></li>
+        <li><a id="cart" href="checkout.html">Shopping Cart</a></li>
+        <li><a href="beermatcher.html">My Beer Match</a></li>
+        <a class="floatRight" href="https://www.facebook.com/"><img src="img/facebook-32.png"></a>
+        <a class="floatRight" href="https://www.twitter.com/"><img src="img/twitter-32.png"></a>
+      </ul>
+    </nav>
+  </header>
+
   <form id="beerMatcher">
-    <fieldset> <br />
+    <fieldset>
       <legend>Beer Matcher</legend>
-      <label for="climateQuiz" ><font color="red">What climate do you live in?</font> <br />
+
+      <p>Lorem ipsum dolor sit amet, erant eripuit ex per, te qui agam tibique recusabo. Duo ut aperiri nonumes definitionem, laoreet percipit at pri. Pri cu amet nonumes vivendo, vim an modus offendit. Te altera ponderum est, iuvaret epicuri duo ne, no eam aeterno rationibus persequeris. Integre oblique adipisci nam ad. Civibus suscipiantur ea his, ut vis altera habemus evertitur, pri erant altera iudicabit no.</p>
+
+      <label for="climateQuiz">What climate do you live in?</label>
       <select id="climateQuiz" class="pickChoice" name="climateQuiz">
         <option value="select">-- Choose an answer --</option>
         <option value="Hot">Hot</option>
         <option value="Cold">Cold</option>
         <option value="Mild">Mild</option>
         <option value="Rainy">Rainy</option>
-      </select> <br />
-      <label for="locationQuiz"><font color="orange">Where are you from?</font> <br />
+      </select><br>
+
+      <label for="locationQuiz">Where are you from?</label>
       <select id="locationQuiz" class="pickChoice" name="locationQuiz">
         <option value="select">-- Choose an answer --</option>
         <option value="asia">Asia</option>
@@ -26,63 +45,66 @@
         <option value="europe">Europe</option>
         <option value="northamerica">North America</option>
         <option value="southamerica">South America</option>
-      </select> <br />
-      <label for="foodQuiz"><font color="green">What kind of food do you like?</font> <br />
+      </select><br>
+
+      <label for="foodQuiz">What kind of food do you like?</label>
       <select id="foodQuiz" class="pickChoice" name="foodQuiz">
         <option value="select">-- Choose an answer --</option>
         <option value="burgers">Burgers or Sandwish</option>
         <option value="fish">Fish and Chips</option>
         <option value="chicken">Wings</option>
         <option value="Oregonwest">Nachos</option>
-      </select> <br />
-      <label for="colorQuiz"><font color="blue">How dark do you like your beer?</font> <br />
+      </select><br>
+
+      <label for="colorQuiz">How dark do you like your beer?</label>
       <select id="colorQuiz" class="pickChoice" name="colorQuiz">
         <option value="select">-- Choose an answer --</option>
         <option value="">Pale</option>
         <option value="red">Red</option>
         <option value="green">Dark</option>
         <option value="dark">Stout</option>
-      </select> <br />
-      <label for="strengthQuiz"><font color="brown">How strong or bitter do you like your beer?(ABV/IBU) </font></label> <br />
+      </select><br>
+
+      <label for="strengthQuiz">How strong or bitter do you like your beer? (ABV/IBU)</label>
       <select id="strengthQuiz" class="pickChoice" name="strengthQuiz">
         <option value="select">-- Choose an answer --</option>
         <option value="bars">Low</option>
         <option value="clubs">Medium</option>
         <option value="events">High</option>
-      </select> <br />
-      <label for="venueQuiz"><font color="purple">Where do you like to drink?</font> <br />
+      </select><br>
+
+      <label for="venueQuiz">Where do you like to drink?</label>
       <select id="venueQuiz" class="pickChoice" name="venueQuiz">
         <option value="select">-- Choose an answer --</option>
         <option value="bars">Bars</option>
         <option value="clubs">Clubs</option>
         <option value="events">Events</option>
         <option value="home">Home</option>
-      </select> <br />
-      <label for="partnerQuiz"><font color="green">Who do you like to drink with?</font> <br />
+      </select><br>
+
+      <label for="partnerQuiz">Who do you like to drink with?</label>
       <select id="partnerQuiz" class="pickChoice" name="partnerQuiz">
         <option value="select">-- Choose an answer --</option>
         <option value="bars">All by myself</option>
         <option value="clubs">With friends</option>
         <option value="events">With family</option>
         <option value="home">With strangers</option>
-      </select> <br />
-      <br />
-<input id="randomizeButton" type="submit" name="submit" value="Try your luck!!" onClick="myButton()">
-</fieldset>
+      </select><br>
 
-</form>
+      <input id="randomizeButton" class="button" type="submit" name="submit" value="Try your luck!!" onClick="myButton()">
+    </fieldset>
+  </form>
+  <div id="results"> 
+    <div id="style-name"><h2 id="style-name"></h2></div>
+    <div id="style-description"><p id="style-description"></p></div>
+  </div>
 
-<style>
-
-</style>
-
-<script type="text/javascript" src="beermatcher2.js"></script>
-<!-- <script type="text/javascript" src="js/app.js"></script> -->
-            <progress value="22" max="100">
-            </progress>
-            <section id="image-container"></section>
-          </body>
-          <footer>
-            Copyright Beer Fellows  All rights reserved.
-          </footer>
-          <html>
+  <!-- <progress value="22" max="100">
+  </progress> -->
+  <section id="image-container"></section>
+  <script type="text/javascript" src="js/beermatcher.js"></script>
+</body>
+  <!-- <footer>
+    Copyright Beer Fellows  All rights reserved.
+  </footer> -->
+<html>
