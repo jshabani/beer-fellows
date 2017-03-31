@@ -44,7 +44,6 @@ nav li a {
 }
 
 nav li a:hover {
-  /*background-color: #111;*/
   background-color: rgba(255, 69, 0, .7);
   color: white;
 }
@@ -79,13 +78,15 @@ nav li a:hover {
   background-color: #333;
 }
 
-/*input, select {
-  font-size: 14px;
-  border: 1px solid #7F7E7E;
-  border-radius: 2px;
-}*/
-
 footer {
   background-color: #333;
   height: 300px;
+  text-align: center;
+  color:white;
+  padding-top: 10px;
+}
+
+footer a {
+  color: #66bfff;
+  text-decoration: none;
 }
