@@ -93,7 +93,7 @@ function showImages() {
   container.innerHTML="";
   var randomIndex = Math.floor(Math.random() * photo.length);
   var image = document.createElement("img");
-  image.src = "imgbmatch/" +photo[randomIndex].src;
+  image.src = "img/" +photo[randomIndex].src;
   container.appendChild(image);
 }
 
