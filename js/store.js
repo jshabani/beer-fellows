@@ -9,7 +9,7 @@ var numberOfPages = "";
 var totalResults = "";
 var httpBeerRequest;
 var httpStyleRequest;
-var httpCategoryRequest;
+var httpCategoryRequest;``
 
 function onLoad() {
   // check if localStorage exists
@@ -196,7 +196,7 @@ function makeBeerStyleContent() {
 
 function goToBeerPage(pageNumber){ //, numberOfPages, totalResults) {
   removeAllBeers();
-  var url = "http://api.brewerydb.com/v2/beers?key=b0ea11da6b4664a3b34cd203de153077&styleId=" + currentStyleId + "&p=" + pageNumber;
+  var url = "https://api.brewerydb.com/v2/beers?key=b0ea11da6b4664a3b34cd203de153077&styleId=" + currentStyleId + "&p=" + pageNumber;
   makeBeerRequest(url);
   //TODO: get the page count to update
 }
@@ -416,7 +416,7 @@ function getBeerByStyleId(styleId) {
   // remove the old beers
   removeAllBeers();
   // do the api call and update the page
-  var url = "http://api.brewerydb.com/v2/beers?key=b0ea11da6b4664a3b34cd203de153077&styleId=" + styleId;
+  var url = "https://api.brewerydb.com/v2/beers?key=b0ea11da6b4664a3b34cd203de153077&styleId=" + styleId;
   makeBeerRequest(url);
 }
 

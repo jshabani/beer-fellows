@@ -59,7 +59,7 @@ for(i=0; i<validate.length; i++){
     return false;
   }
 }
-createUser();
+//createUser();
 alert("Thanks for choosing Beer Fellows! Your order will be shipped in 24 hours. Cheers!");
 }
 
