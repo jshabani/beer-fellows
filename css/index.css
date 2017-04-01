@@ -115,6 +115,10 @@
   animation-duration: 1.5s;
 }
 
+.mySlides {
+  overflow: hidden;
+}
+
 @-webkit-keyframes fade {
   from {opacity: .4}
   to {opacity: 1}
