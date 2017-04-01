@@ -64,7 +64,7 @@ function makeBeerStyleRequest(styleId) {
   }
   console.log("making api call for styles");
   // get data for an individual style
-  var url = "http://api.brewerydb.com/v2/style/" + styleId + "?key=b0ea11da6b4664a3b34cd203de153077"
+  var url = "https://api.brewerydb.com/v2/style/" + styleId + "?key=b0ea11da6b4664a3b34cd203de153077"
   httpStyleRequest.onreadystatechange = makeBeerStyleContent;
   httpStyleRequest.open('GET', url, true);
   httpStyleRequest.send();
