@@ -5,6 +5,8 @@ var cartList = [];
 var cartTotal;// = "";
 var defaultStyleId = 93;
 var currentStyleId = defaultStyleId;
+var numberOfPages = "";
+var totalResults = "";
 var httpBeerRequest;
 var httpStyleRequest;
 var httpCategoryRequest;
@@ -84,15 +86,13 @@ function makeBeerContent() {
       console.log("returning api results for beers");
       var results = JSON.parse(httpBeerRequest.responseText);
       console.log(results);
-      if (parseInt(results.numberOfPages) > 1) {
-        makePageNavigation(results.numberOfPages, results.totalResults);
-      }
+      numberOfPages = results.numberOfPages;
+      totalResults = results.totalResults;
       var beersArray = results.data;
       // loop through results
       for (var i = 0; i < beersArray.length; i++) {
         makeBeerObject(beersArray[i]);
       }
-      // add beers to page
       addBeersToPage();
     } else {
       alert('There was a problem with the request.');
@@ -194,46 +194,10 @@ function makeBeerStyleContent() {
   }
 }
 
-function makePageNavigation(numberOfPages, totalResults) {
-  var pageList = document.getElementById("pageNavigation");
-
-  while (pageList.firstChild) {
-    pageList.removeChild(pageList.firstChild);
-  }
-
-  // set the header text
-  var header = document.createElement("h2");
-  header.textContent = getBeerStyleName(currentStyleId);
-  pageList.appendChild(header);
-
-  if (numberOfPages > 1) {
-    var text = document.createElement("p");
-    // TODO: display style name and page count, like 'Showing 50-100 of 356'
-    text.textContent = "Found " + totalResults + " Beers";
-    pageList.appendChild(text);
-  }
-  for (var i = 1; i <= numberOfPages; i++) {
-    var pageItem = document.createElement("li");
-    pageItem.textContent = i;
-    pageItem.setAttribute("onclick", "goToBeerPage(" + i + ")"); //"," + numberOfPages + "," + totalResults + ")");
-    pageList.appendChild(pageItem);
-  }
-}
-
-function getBeerStyleName(styleId) {
-  var styleName = "";
-  for (var i = 0; i < beerStyleList.length; i ++) {
-    if (beerStyleList[i].id === styleId) {
-      return beerStyleList[i].name;
-    }
-  }
-}
-
 function goToBeerPage(pageNumber){ //, numberOfPages, totalResults) {
   removeAllBeers();
   var url = "http://api.brewerydb.com/v2/beers?key=b0ea11da6b4664a3b34cd203de153077&styleId=" + currentStyleId + "&p=" + pageNumber;
   makeBeerRequest(url);
-
   //TODO: get the page count to update
 }
 
@@ -247,9 +211,38 @@ function removeAllBeers() {
   }
 }
 
-// make the html elements
 function addBeersToPage() {
   var storeContainer = document.getElementById("store");
+
+  // put style name in store header
+  var styleName = document.getElementById("styleName");
+  styleName.textContent = beerList[0].categoryName + " > " + beerList[0].styleName; // this will work because the list is always per style
+
+  // put count of beers found in store header
+  var count = document.getElementById("numberOfBeers");
+  count.textContent = "Found " + totalResults + " Beers";
+
+  // remove old page nav
+  var pageList = document.getElementById("pageNavigation");
+  while (pageList.firstChild) {
+    pageList.removeChild(pageList.firstChild);
+  }
+
+  // make new page nav
+  if (numberOfPages > 1) {
+    for (var i = 1; i <= numberOfPages; i++) {
+      var pageItem = document.createElement("li");
+      pageItem.textContent = i;
+      pageItem.setAttribute("onclick", "goToBeerPage(" + i + ")");
+      pageList.appendChild(pageItem);
+      if ((i % 30) === 0) {
+        var pageBreak = document.createElement("br");
+        pageList.appendChild(pageBreak);
+      }
+    }
+  }
+
+  // make the beer elements
   for (var i = 0; i < beerList.length; i++) {
     // console.log("I am going to add this beer to page: " + beerList[i].name);
     var beerCard = document.createElement("div");
@@ -378,6 +371,10 @@ function addBeerStylesToPage() {
   });
   // make the lists
   var filterList = document.getElementById("filters");
+  var header = document.createElement("h3");
+  header.textContent = "Select a Beer Style";
+  filterList.appendChild(header);
+
   // loop through categories
   for (var i = 0; i < beerCategoryList.length; i++) {
     if (/"/.test(beerCategoryList[i]) === false) { // don't include category """"
@@ -407,7 +404,7 @@ function addBeerStylesToPage() {
 // toggle view of sub-list
 function expandStyleList(categoryNumber) {
   var listToShow = document.getElementById("categoryStyleList" + categoryNumber);
-  if (listToShow.style.display === "none") {
+  if (listToShow.style.display === "none" || listToShow.style.display === "") {
     listToShow.style.display = "inline-block";
   } else {
     listToShow.style.display = "none";

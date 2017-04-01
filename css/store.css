@@ -10,22 +10,25 @@ aside ul {
 aside li {
   list-style: none;
   cursor: pointer;
-  background-color: #f2f2f2;
 }
 
-aside li:nth-child(odd) {
-  background-color: white;
-}
-
-aside li:hover {
+li:hover {
   color: #66bfff;
-  /*background-color: #333;*/
+}
+
+#beerHeader {
+  display: inline;
 }
 
 #pageNavigation {
   margin: 10px;
   padding: 0;
   cursor: pointer;
+  /*width: 400px;*/
+  /*overflow: scroll;*/
+  /*flex-wrap: wrap-reverse;*/
+  /*white-space: pre-wrap;*/
+  font-family: 'Space Mono', monospace;
 }
 
 #pageNavigation li {
@@ -33,12 +36,8 @@ aside li:hover {
   padding: 5px;
 }
 
-#pageNavigation li:hover {
-  color: white;
-  background-color: #333;
-}
-
 section {
+  width: calc(100% - 300px);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -60,6 +59,7 @@ section {
   width: 30%;
   min-width: 200px;
   margin: 5px;
+  background-color: #fcfcfc;
 }
 
 .beer h2 {
