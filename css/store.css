@@ -10,17 +10,21 @@ aside ul {
 aside li {
   list-style: none;
   cursor: pointer;
-  background-color: #f2f2f2;
+  /*background-color: #f2f2f2;*/
 }
 
-aside li:nth-child(odd) {
+/*aside li:nth-child(odd) {
   background-color: white;
-}
+}*/
 
 aside li:hover {
   color: #66bfff;
   /*background-color: #333;*/
 }
+
+/*aside li:active {
+    background-color: yellow;
+}*/
 
 #pageNavigation {
   margin: 10px;
@@ -60,6 +64,7 @@ section {
   width: 30%;
   min-width: 200px;
   margin: 5px;
+  background-color: #fcfcfc;
 }
 
 .beer h2 {
