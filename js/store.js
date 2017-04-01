@@ -9,24 +9,25 @@ var httpBeerRequest;
 var httpStyleRequest;
 var httpCategoryRequest;
 
-// check if localStorage exists
-if (localStorage.getItem("Cart Total") !== null) {
-  cartTotal = JSON.parse(localStorage.getItem("Cart Total").split(","));
-  // set header nav text
-  var navText = document.getElementById("cart");
-  if (cartTotal !== "") {
-    navText.textContent = "Shopping Cart ($" + cartTotal + ")";
+function onLoad() {
+  // check if localStorage exists
+  if (localStorage.getItem("Cart Total") !== null) {
+    cartTotal = JSON.parse(localStorage.getItem("Cart Total").split(","));
+    // set header nav text
+    var navText = document.getElementById("cart");
+    if (cartTotal !== "") {
+      navText.textContent = "Shopping Cart ($" + cartTotal + ")";
+    }
   }
-}
 
-// check if localStorage exists
-if (localStorage.getItem("Matched Beer Style") !== null) {
-  var beerMatcherResult = JSON.parse(localStorage.getItem("Matched Beer Style").split(","));
-  // TODO: this is not working
-  // var currentStyleId = beerMatcherResult.id;
-  // getBeerByStyleId(currentStyleId);
-} else  {
-  var currentStyleId = defaultStyleId;
+  // check if localStorage exists
+  if (localStorage.getItem("Matched Beer Style") !== null) {
+    var beerMatcherResult = JSON.parse(localStorage.getItem("Matched Beer Style").split(","));
+    var currentStyleId = beerMatcherResult.id;
+  } else  {
+    var currentStyleId = defaultStyleId;
+  }
+  getBeerByStyleId(currentStyleId);
 }
 
 // beer object constructor
@@ -44,8 +45,8 @@ function Beer() {
   this.foodPairings = "N/A";
   this.servingTemperature = "N/A";
   this.year = "N/A";
-  this.imgLinkSmall = "img/beer-icon-small.png";
-  this.imgLinkLarge = "img/beer-icon-large.png";
+  this.imgLinkSmall = "img/beer-icon-64.png"; //"img/beer-icon-small.png";
+  this.imgLinkLarge = "img/beer-icon-512.png"; //"img/beer-icon-large.png";
   this.price = 0;
   this.description = "N/A";
 }
@@ -195,6 +196,7 @@ function makeBeerStyleContent() {
 
 function makePageNavigation(numberOfPages, totalResults) {
   var pageList = document.getElementById("pageNavigation");
+
   while (pageList.firstChild) {
     pageList.removeChild(pageList.firstChild);
   }
@@ -242,7 +244,7 @@ function removeAllBeers() {
   var container = document.getElementById("store");
   while (container.firstChild) {
     container.removeChild(container.firstChild);
-}
+  }
 }
 
 // make the html elements
@@ -254,98 +256,110 @@ function addBeersToPage() {
     beerCard.setAttribute("class", "beer");
     beerCard.setAttribute("id", "beer_" + beerList[i].id);
 
-    var name = document.createElement("h3");
+    var name = document.createElement("h2");
     name.textContent = beerList[i].name;
     beerCard.appendChild(name);
+
+    // var imageDiv = document.createElement("div");
 
     var image = document.createElement("img");
     image.setAttribute("id", "img_" + beerList[i].id);
     image.setAttribute("class", "beerImg");
     image.setAttribute("src", beerList[i].imgLinkSmall);
+
+    // imageDiv.appendChild(image);
+
     beerCard.appendChild(image);
 
-    var abv = document.createElement("p");
-    if (beerList[i].abv != 0) { abv.textContent = "ABV " + beerList[i].abv; }
-    beerCard.appendChild(abv);
+    var textDiv = document.createElement("div");
+    textDiv.setAttribute("class", "beerText");
 
-    var ibu = document.createElement("p");
-    if (beerList[i].ibu != 0) { ibu.textContent += "IBU " + beerList[i].ibu; }
-    beerCard.appendChild(ibu);
+      var abv = document.createElement("p");
+      if (beerList[i].abv != 0) { abv.textContent = "ABV " + beerList[i].abv; }
+      textDiv.appendChild(abv);
 
-    var price = document.createElement("p");
-    price.textContent += "$" + beerList[i].price + " pint";
-    beerCard.appendChild(price);
+      var ibu = document.createElement("p");
+      if (beerList[i].ibu != 0) { ibu.textContent += "IBU " + beerList[i].ibu; }
+      textDiv.appendChild(ibu);
 
-    var qty = document.createElement("input");
-    qty.setAttribute("id", "qtyInput_" + beerList[i].id);
-    qty.setAttribute("class", "quantityPicker");
-    qty.setAttribute("type", "text");
-    qty.setAttribute("value", "1"); // default value
-    beerCard.appendChild(qty);
+      var price = document.createElement("p");
+      price.textContent += "$" + beerList[i].price + " pint";
+      textDiv.appendChild(price);
 
-    var addQuantity = document.createElement("input");
-    addQuantity.setAttribute("type", "button");
-    addQuantity.setAttribute("class", "button");
-    addQuantity.setAttribute("value", "+");
-    addQuantity.setAttribute("onclick", "addToQty('" + beerList[i].id + "')");
-    beerCard.appendChild(addQuantity);
+      var qty = document.createElement("input");
+      qty.setAttribute("id", "qtyInput_" + beerList[i].id);
+      qty.setAttribute("class", "quantityPicker");
+      qty.setAttribute("type", "text");
+      qty.setAttribute("value", "1"); // default value
+      textDiv.appendChild(qty);
 
-    var cartButton = document.createElement("input");
-    cartButton.setAttribute("type", "button");
-    cartButton.setAttribute("class", "button");
-    cartButton.setAttribute("value", "Add to Cart");
-    cartButton.setAttribute("onclick", "addToCart('" + beerList[i].id + "')");
-    beerCard.appendChild(cartButton);
+      var addQuantity = document.createElement("input");
+      addQuantity.setAttribute("type", "button");
+      addQuantity.setAttribute("class", "button");
+      addQuantity.setAttribute("value", "+");
+      addQuantity.setAttribute("onclick", "addToQty('" + beerList[i].id + "')");
+      textDiv.appendChild(addQuantity);
 
-    beerCard.appendChild(document.createElement("br"));
+      // beerCard.appendChild(document.createElement("br"));
 
-    var detailsButton = document.createElement("input");
-    detailsButton.setAttribute("id", "detailsButton_" + beerList[i].id);
-    detailsButton.setAttribute("type", "button");
-    detailsButton.setAttribute("class", "button");
-    detailsButton.setAttribute("value", "Show Details");
-    detailsButton.setAttribute("onclick", "viewBeerDetails('" + beerList[i].id + "')");
-    beerCard.appendChild(detailsButton);
+      var cartButton = document.createElement("input");
+      cartButton.setAttribute("type", "button");
+      cartButton.setAttribute("class", "button");
+      cartButton.setAttribute("value", "Add to Cart");
+      cartButton.setAttribute("onclick", "addToCart('" + beerList[i].id + "')");
+      textDiv.appendChild(cartButton);
 
-    beerCard.appendChild(document.createElement("br"));
+      // beerCard.appendChild(document.createElement("br"));
 
-    var detailsContainer = document.createElement("div");
-    detailsContainer.setAttribute("id", "beerDetails_" + beerList[i].id);
-    detailsContainer.style.display = "none";
+      var detailsButton = document.createElement("input");
+      detailsButton.setAttribute("id", "detailsButton_" + beerList[i].id);
+      detailsButton.setAttribute("type", "button");
+      detailsButton.setAttribute("class", "button");
+      detailsButton.setAttribute("value", "Show Details");
+      detailsButton.setAttribute("onclick", "viewBeerDetails('" + beerList[i].id + "')");
+      textDiv.appendChild(detailsButton);
 
-      var category = document.createElement("p");
-      category.textContent = "Beer Category: " + beerList[i].categoryName;
-      detailsContainer.appendChild(category);
+      // beerCard.appendChild(document.createElement("br"));
 
-      var style = document.createElement("p");
-      style.textContent = "Beer Style: " + beerList[i].styleName;
-      detailsContainer.appendChild(style);
+      var detailsContainer = document.createElement("div");
+      detailsContainer.setAttribute("id", "beerDetails_" + beerList[i].id);
+      detailsContainer.style.display = "none";
 
-      var description = document.createElement("p");
-      description.textContent = "Description: " + beerList[i].description;
-      detailsContainer.appendChild(description);
+        var style = document.createElement("p");
+        style.textContent = "Beer Style: " + beerList[i].styleName;
+        detailsContainer.appendChild(style);
 
-      var glass = document.createElement("p");
-      glass.textContent = "Glass Type: " + beerList[i].glassName;
-      detailsContainer.appendChild(glass);
+        var category = document.createElement("p");
+        category.textContent = "Beer Category: " + beerList[i].categoryName;
+        detailsContainer.appendChild(category);
 
-      var description = document.createElement("p");
-      description.textContent = "Food Pairings: " + beerList[i].foodPairings;
-      detailsContainer.appendChild(description);
+        var description = document.createElement("p");
+        description.textContent = "Description: " + beerList[i].description;
+        detailsContainer.appendChild(description);
 
-      var servingTemperature = document.createElement("p");
-      servingTemperature.textContent = "Serving Temperature: " + beerList[i].servingTemperature;
-      detailsContainer.appendChild(servingTemperature);
+        var glass = document.createElement("p");
+        glass.textContent = "Glass Type: " + beerList[i].glassName;
+        detailsContainer.appendChild(glass);
 
-      var organic = document.createElement("p");
-      organic.textContent = "Organic? " + beerList[i].isOrganic;
-      detailsContainer.appendChild(organic);
+        var description = document.createElement("p");
+        description.textContent = "Food Pairings: " + beerList[i].foodPairings;
+        detailsContainer.appendChild(description);
 
-      var year = document.createElement("p");
-      year.textContent = "Year: " + beerList[i].year;
-      detailsContainer.appendChild(year)
+        var servingTemperature = document.createElement("p");
+        servingTemperature.textContent = "Serving Temperature: " + beerList[i].servingTemperature;
+        detailsContainer.appendChild(servingTemperature);
 
-    beerCard.appendChild(detailsContainer);
+        var organic = document.createElement("p");
+        organic.textContent = "Organic? " + beerList[i].isOrganic;
+        detailsContainer.appendChild(organic);
+
+        var year = document.createElement("p");
+        year.textContent = "Year: " + beerList[i].year;
+        detailsContainer.appendChild(year)
+
+        textDiv.appendChild(detailsContainer);
+
+      beerCard.appendChild(textDiv);
 
     storeContainer.appendChild(beerCard);
   }
@@ -481,7 +495,7 @@ function addToQty(beerId) {
 }
 
 // do this on page load
-window.addEventListener("load", makeBeerRequest("http://api.brewerydb.com/v2/beers?key=b0ea11da6b4664a3b34cd203de153077&styleId=" + defaultStyleId));
+//window.addEventListener("load", makeBeerRequest("http://api.brewerydb.com/v2/beers?key=b0ea11da6b4664a3b34cd203de153077&styleId=" + defaultStyleId));
 window.addEventListener("load", makeBeerCategoryRequest("http://api.brewerydb.com/v2/categories?key=b0ea11da6b4664a3b34cd203de153077"));
 window.addEventListener("load", makeBeerStyleRequest("http://api.brewerydb.com/v2/styles?key=b0ea11da6b4664a3b34cd203de153077"));
-// document.getElementById("cart").addEventListener("load", updateNavText);
+window.addEventListener("load", onLoad);

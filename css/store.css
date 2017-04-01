@@ -51,11 +51,23 @@ section {
   width: calc(100% - 300px);
 }
 
+.selectedBeer .beerText {
+  padding-left: 522px; /* large image = 512 + 10 */
+}
+
 .beer {
   border-top: 1px solid gray;
   width: 30%;
   min-width: 200px;
   margin: 5px;
+}
+
+.beer h2 {
+  text-align: center;
+  /*background-color: rgba(255, 69, 0, .7);*/
+  font-weight: bold;
+  /*font-size: 22px;*/
+  /*border-radius: 3px;*/
 }
 
 .beer p {
