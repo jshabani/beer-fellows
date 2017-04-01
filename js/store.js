@@ -211,41 +211,36 @@ function removeAllBeers() {
   }
 }
 
-
-  // var pageList = document.getElementById("pageNavigation");
-  // // remove all elements
-  // while (pageList.firstChild) {
-  //   pageList.removeChild(pageList.firstChild);
-  //
-  //
-  // if (numberOfPages > 1) {
-  //   var text = document.createElement("p");
-  //   // TODO: display style name and page count, like 'Showing 50-100 of 356'
-  //   text.textContent = "Found " + totalResults + " Beers";
-  //   pageList.appendChild(text);
-  // // }
-  // for (var i = 1; i <= numberOfPages; i++) {
-  //   var pageItem = document.createElement("li");
-  //   pageItem.textContent = i;
-  //   pageItem.setAttribute("onclick", "goToBeerPage(" + i + ")"); //"," + numberOfPages + "," + totalResults + ")");
-  //   pageList.appendChild(pageItem);
-  // }
-// }
-
-
 function addBeersToPage() {
   var storeContainer = document.getElementById("store");
 
   // put style name in store header
   var styleName = document.getElementById("styleName");
-  styleName.textContent = beerList[0].styleName; // this will work because the list is always per style
+  styleName.textContent = beerList[0].categoryName + " > " + beerList[0].styleName; // this will work because the list is always per style
 
   // put count of beers found in store header
   var count = document.getElementById("numberOfBeers");
-  count.textContent = totalResults;
+  count.textContent = "Found " + totalResults + " Beers";
 
-  // make page nav
-  // TODO: 
+  // remove old page nav
+  var pageList = document.getElementById("pageNavigation");
+  while (pageList.firstChild) {
+    pageList.removeChild(pageList.firstChild);
+  }
+
+  // make new page nav
+  if (numberOfPages > 1) {
+    for (var i = 1; i <= numberOfPages; i++) {
+      var pageItem = document.createElement("li");
+      pageItem.textContent = i;
+      pageItem.setAttribute("onclick", "goToBeerPage(" + i + ")");
+      pageList.appendChild(pageItem);
+      if ((i % 30) === 0) {
+        var pageBreak = document.createElement("br");
+        pageList.appendChild(pageBreak);
+      }
+    }
+  }
 
   // make the beer elements
   for (var i = 0; i < beerList.length; i++) {
