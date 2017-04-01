@@ -493,6 +493,6 @@ function addToQty(beerId) {
 
 // do this on page load
 //window.addEventListener("load", makeBeerRequest("http://api.brewerydb.com/v2/beers?key=b0ea11da6b4664a3b34cd203de153077&styleId=" + defaultStyleId));
-window.addEventListener("load", makeBeerCategoryRequest("http://api.brewerydb.com/v2/categories?key=b0ea11da6b4664a3b34cd203de153077"));
-window.addEventListener("load", makeBeerStyleRequest("http://api.brewerydb.com/v2/styles?key=b0ea11da6b4664a3b34cd203de153077"));
+window.addEventListener("load", makeBeerCategoryRequest("https://api.brewerydb.com/v2/categories?key=b0ea11da6b4664a3b34cd203de153077"));
+window.addEventListener("load", makeBeerStyleRequest("https://api.brewerydb.com/v2/styles?key=b0ea11da6b4664a3b34cd203de153077"));
 window.addEventListener("load", onLoad);
