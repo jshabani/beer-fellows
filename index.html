@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Beer Fellows Home</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link href="https://fonts.googleapis.com/css?family=Bungee|Raleway" rel="stylesheet">
+  </head>
+  <body>
+    <header>
+      <div id="logo"></div>
+      <h1 id="logoText">Beer Fellows</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="store.html">Store</a></li>
+          <li><a id="cart" href="checkout.html">Shopping Cart</a></li>
+          <li><a href="beermatcher.html">My Beer Match</a></li>
+          <a class="floatRight" href="https://www.facebook.com/" target="_blank"><img src="img/facebook-32.png"></a>
+          <a class="floatRight" href="https://www.twitter.com/" target="_blank"><img src="img/twitter-32.png"></a>
+          <a class="floatRight" href="https://www.instagram.com/" target="_blank"><img src="img/instagram-32.png"></a>
+        </ul>
+      </nav>
+    </header>
+    <div class="slideshow-container">
+      <div id="slideshow1" class="mySlides fade">
+        <div class="numbertext">1 / 3</div>
+        <img src="img/stock4.jpg">
+        <div class="text">Largest online beer store in the world</div>
+      </div>
+      <div id="slideshow2" class="mySlides fade">
+        <div class="numbertext">2 / 3</div>
+        <img src="img/stock2.jpg">
+        <div class="text">Get beer shipped directly to you the same day</div>
+      </div>
+      <div id="slideshow3" class="mySlides fade">
+        <div class="numbertext">3 / 3</div>
+        <img src="img/stock1.jpg">
+        <div class="text">Can't decide what to drink? That's what we're here for</div>
+      </div>
+      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+      </div>
+      <br>
+      <div style="text-align:center">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+      </div>
+
+      <script>
+      var slideIndex = 1;
+      showSlides(slideIndex);
+
+      function plusSlides(n) {
+        showSlides(slideIndex += n);
+      }
+
+      function currentSlide(n) {
+        showSlides(slideIndex = n);
+      }
+
+      function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+      }
+      </script>
+
+      <h1 class="featureHeader">How Beer Fellows Works</h1>
+      <div class="featureContainer">
+        <div>
+          <img src="img/computer-icon-128.png"><br>
+          <p>Order Beer Online</p>
+        </div>
+        <div>
+          <img src="img/box-icon-128.png"><br>
+          <p>Get Beer In Mail</p>
+        </div>
+        <div>
+          <img src="img/beer-icon-128.png"><br>
+          <p>Drink Beer</p>
+        </div>
+      </div>
+
+      <hr>
+
+      <h2 class="featureHeader">More than just an online beer store...</h2>
+      <div class="featureContainer">
+        <p><em>"What can I say about Beer Fellows that hasn't already been said about the wheel, penicillin, or the iPhone?"</em><br><br>Pierre, Portland, OR</p>
+      </div>
+      <div class="featureContainer">
+        <p><em>"As a wife and mother, I LOVE Beer Fellows. It keeps me in my place, allows me to get dinner ready on time, and helps me to feel needed."</em><br><br>Christy, San Francisco, CA</p>
+      </div>
+      <div class="featureContainer">
+        <p><em>"I believe buying beer from Beer Fellows has made me a better man, which is remarkable because, well...I'm a chick."</em><br><br>Joel, New York, NY</p>
+      </div>
+      <div class="featureContainer">
+        <p><em>"It's great when you're too wasted to go to the store."</em><br><br>Erdem, Portland, OR</p>
+      </div>
+      <div class="featureContainer">
+        <p><em>"I'm not just the President of Beer Fellows, I'm also a client."</em><br><br>Donald Trump, Washington DC</p>
+      </div>
+
+      <hr>
+
+      <div class="featureContainer">
+        <div>
+          <h1>Introducing <em>My Beer Match</em>, with our patented BeerMatcherTechnology&reg;</h1>
+          <img src="img/boy-icon-128.png"><img src="img/arrow-mix-icon-128.png"><img src="img/beer-icon-128.png"><br>
+          <a class="bigButton" href="beermatcher.html">Try It Now</a>
+        </div>
+      </div>
+
+    <footer>
+      <p>OVER ONE BILLION CUSTOMERS SERVED</p>
+      <a href="http://www.codefellowspdx.com/" target="_blank">About</a><br>
+      <a href="store.html">Store</a><br>
+      <a href="checkout.html">Checkout</a><br>
+      <a href="beermatcher.html">My Beer Match</a><br>
+      <a href="https://www.indeed.com/" target="_blank">Careers</a><br>
+      <a href="mailto:contact@beerfellows.com">Contact</a><br>
+      <a href="https://www.facebook.com/" target="_blank"><img src="img/facebook-32.png"></a>
+      <a href="https://www.twitter.com/" target="_blank"><img src="img/twitter-32.png"></a>
+      <a href="https://www.instagram.com/" target="_blank"><img src="img/instagram-32.png"></a>
+      <p> Beer Fellows PDX &copy;2017</p>
+    </footer>
+
+    <script>
+      // check if local storage exits
+      var cartTotal = "";
+      if (localStorage.getItem("Cart Total") !== null) {
+        cartTotal = JSON.parse(localStorage.getItem("Cart Total").split(","));
+        var navText = document.getElementById("cart");
+        // set header nav text
+        if (cartTotal !== null) {
+          navText.textContent = "Shopping Cart ($" + cartTotal + ")";
+        }
+      }
+    </script>
+  </body>
+</html>
