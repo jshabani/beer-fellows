@@ -1,81 +1,66 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Beer Fellows Home</title>
+  <head lang="en">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, inital-scale=1">
+    <title>Beer Fellows</title>
+    <link href="https://fonts.googleapis.com/css?family=Bungee|Raleway" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styles/base.css">
+    <link rel="stylesheet" type="text/css" href="styles/layout.css">
+    <link rel="stylesheet" type="text/css" href="styles/modules.css">
+
+    <!--TODO: these will eventually be removed-->
     <link rel="stylesheet" type="text/css" href="styles/style.css">
     <link rel="stylesheet" type="text/css" href="styles/index.css">
-    <link href="https://fonts.googleapis.com/css?family=Bungee|Raleway" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styles/store.css">
+    <link rel="stylesheet" type="text/css" href="styles/checkout.css">
+    <link rel="stylesheet" type="text/css" href="styles/beermatcher.css">
+
+    <!--TODO: add handlebars template  -->
   </head>
+
   <body>
     <header>
       <div id="logo"></div>
       <h1 id="logoText">Beer Fellows</h1>
       <nav>
         <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="store.html">Store</a></li>
-          <li><a id="cart" href="checkout.html">Shopping Cart</a></li>
-          <li><a href="beermatcher.html">My Beer Match</a></li>
+          <li><a href="/">Home</a></li>
+          <li><a href="/store">Store</a></li>
+          <li><a id="cart-total" href="/cart">Shopping Cart</a></li>
+          <li><a href="/matcher">My Beer Match</a></li>
           <a class="floatRight" href="https://www.facebook.com/" target="_blank"><img src="images/facebook-32.png"></a>
           <a class="floatRight" href="https://www.twitter.com/" target="_blank"><img src="images/twitter-32.png"></a>
           <a class="floatRight" href="https://www.instagram.com/" target="_blank"><img src="images/instagram-32.png"></a>
         </ul>
       </nav>
     </header>
-    <div class="slideshow-container">
-      <div id="slideshow1" class="mySlides fade">
-        <div class="numbertext">1 / 3</div>
-        <img src="images/stock4.jpg">
-        <div class="text">Largest online beer store in the world</div>
-      </div>
-      <div id="slideshow2" class="mySlides fade">
-        <div class="numbertext">2 / 3</div>
-        <img src="images/stock2.jpg">
-        <div class="text">Get beer shipped directly to you the same day</div>
-      </div>
-      <div id="slideshow3" class="mySlides fade">
-        <div class="numbertext">3 / 3</div>
-        <img src="images/stock1.jpg">
-        <div class="text">Can't decide what to drink? That's what we're here for</div>
-      </div>
-      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-      <a class="next" onclick="plusSlides(1)">&#10095;</a>
-      </div>
-      <br>
-      <div style="text-align:center">
-        <span class="dot" onclick="currentSlide(1)"></span>
-        <span class="dot" onclick="currentSlide(2)"></span>
-        <span class="dot" onclick="currentSlide(3)"></span>
-      </div>
 
-      <script>
-      var slideIndex = 1;
-      showSlides(slideIndex);
-
-      function plusSlides(n) {
-        showSlides(slideIndex += n);
-      }
-
-      function currentSlide(n) {
-        showSlides(slideIndex = n);
-      }
-
-      function showSlides(n) {
-        var i;
-        var slides = document.getElementsByClassName("mySlides");
-        var dots = document.getElementsByClassName("dot");
-        if (n > slides.length) {slideIndex = 1}
-        if (n < 1) {slideIndex = slides.length}
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
-        }
-        for (i = 0; i < dots.length; i++) {
-            dots[i].className = dots[i].className.replace(" active", "");
-        }
-        slides[slideIndex-1].style.display = "block";
-        dots[slideIndex-1].className += " active";
-      }
-      </script>
+    <section id="home" class="tab-content">
+      <div class="slideshow-container">
+        <div id="slideshow1" class="mySlides fade">
+          <div class="numbertext">1 / 3</div>
+          <img src="images/stock4.jpg">
+          <div class="text">Largest online beer store in the world</div>
+        </div>
+        <div id="slideshow2" class="mySlides fade">
+          <div class="numbertext">2 / 3</div>
+          <img src="images/stock2.jpg">
+          <div class="text">Get beer shipped directly to you the same day</div>
+        </div>
+        <div id="slideshow3" class="mySlides fade">
+          <div class="numbertext">3 / 3</div>
+          <img src="images/stock1.jpg">
+          <div class="text">Can't decide what to drink? That's what we're here for</div>
+        </div>
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+        <br>
+        <div style="text-align:center">
+          <span class="dot" onclick="currentSlide(1)"></span>
+          <span class="dot" onclick="currentSlide(2)"></span>
+          <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
 
       <h1 class="featureHeader">How Beer Fellows Works</h1>
       <div class="featureContainer">
@@ -121,32 +106,217 @@
           <a class="bigButton" href="beermatcher.html">Try It Now</a>
         </div>
       </div>
+    </section>   
+
+    <section id="matcher" class="tab-content">
+      <form id="beerMatcher">
+        <fieldset>
+          <legend>My Beer Match</legend>
+
+          <p>Our Beer scientists have spent the last 50 years pefecting <em>My Beer Match,</em> which uses our patented BeerMatcherTechnology&reg; to accuratly determine your ideal beer style. We're so confident that your results will be exacly what you like, we don't even need to guarrentee it.</p><br>
+          <img src="images/boy-icon-128.png"><img src="images/arrow-mix-icon-128.png"><img src="images/beer-icon-128.png"><br>
+          <p>Simply answer the questions below and click the <em>Find My Beers</em> button.</p>
+
+          <label for="climateQuiz">What climate do you live in?</label>
+          <select id="climateQuiz" class="pickChoice" name="climateQuiz">
+            <option value="" hidden>Choose a climate</option>
+            <option value="Hot">Hot</option>
+            <option value="Cold">Cold</option>
+            <option value="Mild">Mild</option>
+            <option value="Rainy">Rainy</option>
+          </select><br>
+
+          <label for="locationQuiz">Where are you from?</label>
+          <select id="locationQuiz" class="pickChoice" name="locationQuiz">
+            <option value="" hidden>Choose a location</option>
+            <option value="asia">Asia</option>
+            <option value="africa">Africa</option>
+            <option value="europe">Europe</option>
+            <option value="northamerica">North America</option>
+            <option value="southamerica">South America</option>
+          </select><br>
+
+          <label for="foodQuiz">What kind of food do you like?</label>
+          <select id="foodQuiz" class="pickChoice" name="foodQuiz">
+            <option value="" hidden>Choose a food</option>
+            <option value="burgers">Burgers or Sandwish</option>
+            <option value="fish">Fish and Chips</option>
+            <option value="chicken">Wings</option>
+            <option value="Oregonwest">Nachos</option>
+          </select><br>
+
+          <label for="colorQuiz">How dark do you like your beer?</label>
+          <select id="colorQuiz" class="pickChoice" name="colorQuiz">
+            <option value="" hidden>Choose a style</option>
+            <option value="pale">Pale</option>
+            <option value="red">Red</option>
+            <option value="green">Dark</option>
+            <option value="dark">Stout</option>
+          </select><br>
+
+          <label for="strengthQuiz">How strong or bitter do you like your beer? (ABV/IBU)</label>
+          <select id="strengthQuiz" class="pickChoice" name="strengthQuiz">
+            <option value="" hidden>Choose a bitterness</option>
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select><br>
+
+          <label for="venueQuiz">Where do you like to drink?</label>
+          <select id="venueQuiz" class="pickChoice" name="venueQuiz">
+            <option value="" hidden>Choose a location</option>
+            <option value="bars">Bars</option>
+            <option value="clubs">Clubs</option>
+            <option value="events">Events</option>
+            <option value="home">Home</option>
+          </select><br>
+
+          <label for="partnerQuiz">Who do you like to drink with?</label>
+          <select id="partnerQuiz" class="pickChoice" name="partnerQuiz">
+            <option value="" hidden>Choose a setting</option>
+            <option value="bars">All by myself</option>
+            <option value="clubs">With friends</option>
+            <option value="events">With family</option>
+            <option value="home">With strangers</option>
+          </select><br>
+
+          <input id="submitButton" class="bigButton" type="button" name="submit" value="Find My Beers!" onClick="validateForm()">
+        </fieldset>
+      </form>
+
+      <div id="results">
+        <h2 id="resultsHeading">Your Beer Match</h2>
+        <h3 id="style-name"></h3>
+        <h4 id="style-category-name"></h4>
+        <p id="style-description"></p>
+        <a class="bigButton" href="store.html">View Beers</a>
+      </div>
+    </section>
+
+    <section id="cart" class="tab-content">
+      <div id="checkoutContainer">
+        <form id="formUser">
+          <div id="leftForm">
+            <fieldset id="billingInfo">
+              <legend>Personal &amp; Billing Info</legend>
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" class="checkout" name="firstname" placeholder="First Name" value="" required><br>
+              <label for="lastname">Last Name</label>
+              <input type="text" id="lname" class="checkout" name="lastname" placeholder="Last Name" value="" required><br>
+              <label for="email">Email</label>
+              <input type="text" id="email" class="checkout" name="email" placeholder="Email Address" value="" required><br>
+              <label for="phone">Phone Number</label>
+              <input type="number" id="phone" class="checkout" name="phone" placeholder="Phone" value="" required><br>
+              <label for="address">Shipping Address</label>
+              <input type="text" id="address" class="checkout" name="adress" placeholder="Address" value="" required><br>
+              <label for="city">City</label>
+              <input type="text" id="city" class="checkout" name="city" placeholder="City" value="" required=""><br>
+              <label for="state">State</label>
+              <input type="text" id="state" class="checkout" name="state" placeholder="State/Providence" value="" required><br>
+              <label for="zip">Zip Code</label>
+              <input type="number" id="zip" class="checkout" name="zip" placeholder="Zip/Postal Code" value="" required><br>
+              <input type="checkbox" id="shippingAddress" class="checkout" name="shippingAddress" value="true">Same as billing address
+            </fieldset>
+          </div>
+
+          <div class="rightForm">
+            <fieldset id="shippingForm">
+              <legend>Shipping Type</legend>
+              <input type="radio" class="checkout" name="ship" value=4.00 checked> Standard ($4.00) <br>
+              <input type="radio" class="checkout" name="ship" value=8.00> Express ($8.00) <br>
+              <input type="radio" class="checkout" name="ship" value=12.00> Overnight ($12.00)
+            </fieldset>
+
+            <fieldset id="paymentForm">
+              <legend>Payment Info</legend>
+              <label>Credit Card Number</label>
+              <input type="number" id="cardNo" class="checkout" name="cardno" placeholder="xxxx-xxxx-xxxx-xxxx" value="" required> <br>
+              <label>Expiration Date</label>
+              <div>
+                <select name="exp_month" value="" id="exp_month" placeholder="" data-trigger="change" data-type="name" data-required="true" data-error-message="Enter Your Credit Card Expiration Date">
+                  <option value = "1">01 (Jan)</option>
+                  <option value = "2">02 (Feb)</option>
+                  <option value = "3">03 (Mar)</option>
+                  <option value = "4">04 (Apr)</option>
+                  <option value = "5">05 (May)</option>
+                  <option value = "6">06 (Jun)</option>
+                  <option value = "7">07 (Jul)</option>
+                  <option value = "8">08 (Aug)</option>
+                  <option value = "9">09 (Sep)</option>
+                  <option value = "10">10 (Oct)</option>
+                  <option value = "11">11 (Nov)</option>
+                  <option value = "12">12 (Dec)</option>
+                </select>
+              </div>
+              <div>
+                <select name="exp_year" value="" id="exp_year" placeholder="" data-trigger="change" data-type="name" data-required="true" data-error-message="Enter Your Credit Card Expiration Date">
+                  <option value = "1">14 </option>
+                  <option value = "2">15 (Feb)</option>
+                  <option value = "3">16 (Mar)</option>
+                  <option value = "4">17 (Apr)</option>
+                  <option value = "5">18 (May)</option>
+                  <option value = "6">19 (Jun)</option>
+                  <option value = "7">20 (Jul)</option>
+                  <option value = "8">22 (Aug)</option>
+                  <option value = "9">23 (Sep)</option>
+                  <option value = "10">24 (Oct)</option>
+                  <option value = "11">25 (Nov)</option>
+                  <option value = "12">26 (Dec)</option>
+                </select>
+              </div>
+            </fieldset>
+
+          <fieldset id="orderSummary">
+            <legend>Order Summary</legend>
+            <table id="cartTable"></table>
+          </fieldset>
+          </div>
+          <input class="bigButton" type="submit" onclick="validateForm()" value="Submit Your Order">
+        </form>
+      </div>
+    </section>
+
+    <section id="store" class="tab-content">
+      <!-- The store is broken :( -->
+
+      <aside>
+        <ul id="filters"></ul>
+      </aside>
+
+      <div id="beerHeader">
+        <h1 id="styleName"> </h1>
+        <p id="numberOfBeers"> </p>
+        <ul id="pageNavigation"></ul>
+      </div>
+    </section>
 
     <footer>
       <p>OVER ONE BILLION CUSTOMERS SERVED</p>
       <a href="http://www.codefellowspdx.com/" target="_blank">About</a><br>
-      <a href="store.html">Store</a><br>
-      <a href="checkout.html">Checkout</a><br>
-      <a href="beermatcher.html">My Beer Match</a><br>
+      <a href="/store">Store</a><br>
+      <a href="/cart">Checkout</a><br>
+      <a href="/matcher">My Beer Match</a><br>
       <a href="https://www.indeed.com/" target="_blank">Careers</a><br>
       <a href="mailto:contact@beerfellows.com">Contact</a><br>
       <a href="https://www.facebook.com/" target="_blank"><img src="images/facebook-32.png"></a>
       <a href="https://www.twitter.com/" target="_blank"><img src="images/twitter-32.png"></a>
       <a href="https://www.instagram.com/" target="_blank"><img src="images/instagram-32.png"></a>
-      <p> Beer Fellows PDX &copy;2017</p>
+      <p>Beer Fellows PDX &copy;2017</p>
     </footer>
 
-    <script>
-      // check if local storage exits
-      var cartTotal = "";
-      if (localStorage.getItem("Cart Total") !== null) {
-        cartTotal = JSON.parse(localStorage.getItem("Cart Total").split(","));
-        var navText = document.getElementById("cart");
-        // set header nav text
-        if (cartTotal !== null) {
-          navText.textContent = "Shopping Cart ($" + cartTotal + ")";
-        }
-      }
-    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
+    <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
+    
+    <!--TODO: these will eventually go away-->
+    <script type="text/javascript" src="scripts/home.js"></script>
+    <script type="text/javascript" src="scripts/store.js"></script>
+    <script type="text/javascript" src="scripts/beermatcher.js"></script>
+    <script type="text/javascript" src="scripts/checkout.js"></script>
+
+    <script type="text/javascript" src="scripts/controllers/navigation.js"></script>
+    <script type="text/javascript" src="scripts/controllers/routes.js"></script>
+
   </body>
 </html>
